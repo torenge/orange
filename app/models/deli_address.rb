@@ -1,0 +1,2 @@
+class DeliAddress < ApplicationRecord
+end
