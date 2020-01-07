@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2020_01_07_072447) do
 
   create_table "deli_addresses", force: :cascade do |t|
@@ -21,9 +22,24 @@ ActiveRecord::Schema.define(version: 2020_01_07_072447) do
     t.string "kana_last_name"
     t.integer "postal_code"
     t.integer "tel_num"
+
+ActiveRecord::Schema.define(version: 2020_01_07_054103) do
+
+  create_table "carts", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "user_id"
+    t.integer "quantity"
+    
+ActiveRecord::Schema.define(version: 2020_01_07_074312) do
+
+  create_table "order_products", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "product_id"
+    t.text "total"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
 
   create_table "genres", force: :cascade do |t|
     t.string "genre_name"
@@ -38,6 +54,27 @@ ActiveRecord::Schema.define(version: 2020_01_07_072447) do
     t.string "kana_last_name"
     t.string "mail_address"
     t.string "password"
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "deli_address_id"
+    t.integer "user_id"
+    t.integer "payment"
+    t.string "status"
+    t.string "pay_method"
+    t.string "postage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.integer "genre_id"
+    t.string "product_name"
+    t.string "price"
+    t.text "introduction"
+    t.string "status"
+    t.text "product_img_url"
+
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
