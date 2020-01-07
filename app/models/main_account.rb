@@ -1,0 +1,2 @@
+class MainAccount < ApplicationRecord
+end
