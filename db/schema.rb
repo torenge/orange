@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2020_01_07_054103) do
+ActiveRecord::Schema.define(version: 2020_01_07_074312) do
 
   create_table "carts", force: :cascade do |t|
     t.integer "product_id"
     t.integer "user_id"
     t.integer "quantity"
-=======
-ActiveRecord::Schema.define(version: 2020_01_07_074312) do
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "order_products", force: :cascade do |t|
     t.integer "order_id"
@@ -47,10 +47,35 @@ ActiveRecord::Schema.define(version: 2020_01_07_074312) do
     t.text "introduction"
     t.string "status"
     t.text "product_img_url"
->>>>>>> master
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+   create_table "deli_addresses", force: :cascade do |t|
+    t.integer "user_id"
+    t.text "address"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "kana_first_name"
+    t.string "kana_last_name"
+    t.integer "postal_code"
+    t.integer "tel_num"
+  end
+
+    create_table "genres", force: :cascade do |t|
+    t.string "genre_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "main_accounts", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "kana_first_name"
+    t.string "kana_last_name"
+    t.string "mail_address"
+    t.string "password"
+end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
