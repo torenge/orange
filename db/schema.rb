@@ -10,6 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema.define(version: 2020_01_07_054103) do
+
+  create_table "carts", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "user_id"
+    t.integer "quantity"
+    
 ActiveRecord::Schema.define(version: 2020_01_07_074312) do
 
   create_table "order_products", force: :cascade do |t|
