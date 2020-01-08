@@ -2,5 +2,5 @@ class DeliAddress < ApplicationRecord
 
 	has_many :orders
 
-	belongs_to :users
+	belongs_to :user
 end
