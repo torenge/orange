@@ -1,2 +1,29 @@
-<h1>Public::DeliAddresses#edit</h1>
-<p>Find me in app/views/public/deli_addresses/edit.html.erb</p>
+<strong>配送先編集</strong>
+
+<%= form_for(@deli_addresses, url:"/public/deli_addresses/#{@deli_addresses.id}") do |f| %>
+<table>
+
+
+	<tr>
+		<td>郵便番号</td>
+		<td><%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+        </td>
+	</tr>
+
+    <tr>
+		<td>住所</td>
+		<td><%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+        </td>
+	</tr>
+
+	<tr>
+		<td>宛名</td>
+		<td><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+	　　</td>
+	</tr>
+
+	 </table>
+    <%= f.submit '編集する' %>
+
+<% end %>

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'public/users/:id/withdraw' => 'public/users#withdraw', as: 'withdraw_public_user'
+
   root 'public/users#index'
 
 
@@ -9,7 +11,7 @@ Rails.application.routes.draw do
 
 
   namespace :public do
-    resources :users, only: [:index, :edit, :show, :update]
+    resources :users, only: [:index, :edit, :show, :update, :withdraw]
     resources :deli_addresses, only: [:index, :create, :edit, :update, :destroy]
     resources :carts, only: [:index, :create, :update, :destroy]
     resources :products, only: [:index, :show]

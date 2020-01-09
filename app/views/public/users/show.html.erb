@@ -1,1 +1,53 @@
-public/users/show
+<h3>マイページ</h3>
+
+<p>
+	<strong>登録情報</strong>
+	<%= link_to "編集する", edit_public_user_path(@user) %>
+	<%= link_to "パスワードを変更する", edit_user_registration_path(@user) %>
+</p>
+
+<table>
+
+	<tr>
+		<td>氏名</td>
+		<td><%= @user.fullname %></td>
+	</tr>
+
+    <tr>
+		<td>カナ</td>
+		<td><%= @user.kana_fullname %></td>
+	</tr>
+
+	<tr>
+		<td>郵便番号</td>
+		<td><span>〒</span><%= @user.postal_code %></td>
+	</tr>
+
+	<tr>
+		<td>住所</td>
+		<td><%= @user.address %></td>
+	</tr>
+
+	<tr>
+		<td>電話番号</td>
+		<td><%= @user.tel_num %></td>
+	</tr>
+
+	<tr>
+		<td>メールアドレス</td>
+		<td><%= @user.email %></td>
+	</tr>
+
+</table>
+
+<p>
+	<strong>配送先</strong>
+	<%= link_to "一覧を見る", public_deli_addresses_path %>
+</p>
+
+<p>
+	<strong>注文履歴</strong>
+	<%= link_to "一覧を見る", public_orders_path %>
+</p>
+
+</table>
