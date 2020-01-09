@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :edit, :show, :update]
     resources :deli_addresses, only: [:index, :create, :edit, :update, :destroy]
     resources :carts, only: [:index, :create, :update, :destroy]
-    resources :products, only: [:index, :show]
+    resources :products, only: [:index, :show, :create]
     resources :order_products, only: [:index, :new,  :create, :show, :update]
     resources :orders, only: [:index, :show]
   end
