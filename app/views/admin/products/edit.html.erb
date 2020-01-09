@@ -1,2 +1,33 @@
-<h1>Admin::Products#edit</h1>
-<p>Find me in app/views/admin/products/edit.html.erb</p>
+<h1>商品　編集画面</h1>
+<%= form_for [:admin, @product] do |f| %>
+	<%= attachment_image_tag @product, :product_image, :fill, 100, 100, format: 'jpeg' %>
+	<%= f.attachment_field :product_image %>
+
+	<div class="field row">
+		<%= f.label "商品名" %>
+		<%= f.text_field :product_name %>
+	</div>
+
+	<div class="field row">
+		<%= f.label "商品説明" %>
+		<%= f.text_area :introduction %>
+	</div>
+
+	<div class="field row">
+			<%= f.label "ジャンル" %>
+			<%= f.collection_select(:genre_id, Genre.where(genre_status: "有効"), :id, :genre_name, :prompt => '--選択してください--') %>
+	</div>
+
+	<div class="field row">
+		<%= f.label "税抜価格" %>
+		<%= f.text_field :price %>
+		<%= f.label "円" %>
+	</div>
+
+	<div class="field row">
+		<%= f.label "販売ステータス" %>
+		<%= f.select :status, ['販売中', '売切れ'], {prompt: '--選択してください--'} %>
+	</div>
+
+	<%= f.submit "新規登録" %>
+<% end %>
