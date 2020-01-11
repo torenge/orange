@@ -1,1 +1,42 @@
-admin/users/show
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ながのCAKEオレンジ</title>
+	</head>
+	<body>
+		<h1>会員詳細画面</h1>
+
+		<div class="field row">
+			<label for="user-id">顧客ID</label>
+			<%= @user.id %>
+		</div>
+
+		<div class="field row">
+			<label for="fullname">氏名</label>
+		</div>
+
+		<div class="field row">
+			<label for="kana-fullname">フリガナ</label>
+		</div>
+
+		<div class="field row">
+			<label for="postal-code">郵便番号</label>
+			<%= @user.postal_code %>
+		</div>
+
+		<div class="field row">
+			<label for="address">住所</label>
+			<%= @user.address %>
+		</div>
+
+		<div class="field row">
+			<label for="tel_num">電話番号</label>
+			<%= @user.tel_num%>
+		</div>
+
+		<div class="field row">
+			<label for="email">メールアドレス</label>
+			<%= @user.email %>
+		</div>
+	</body>
+</html>
