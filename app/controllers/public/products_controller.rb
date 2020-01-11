@@ -1,28 +1,31 @@
 class Public::ProductsController < ApplicationController
-  def index
-  	@products = Product.page(params[:page]).per(8)
+  def genreshow
+    @products = Product.page(params[:page]).per(8)
   	@genres = Genre.all
-  	@genre = Genre.find(params[:id])
-  	price = product.price * 1.1
+  	@genre = Genre.find_by(params[:genre_id])
   end
 
   def show
   	@genres = Genre.all
   	@genre = Genre.find(params[:id])
   	@product = Product.find(params[:id])
-    price = product.price * 1.1
+    @cart = Cart.new
   end
 
   def create
-    @product = Product.find(params[:id])
-    @cart = Cart.new
-    @cart.product_id = @product.id
+    @cart = Cart.new(cart_params)
+    print "aaa"
+    print @cart.product_id
+    print "bbb"
     @cart.user_id = current_user.id
-    redirect_to pablic_carts_path
+    @cart.save!
   end
 
   private
   def product_params
     params.require(:product).permit(:genre_id, :product_name, :price, :introduction, :product_image_id)
+  end
+  def cart_params
+    params.require(:cart).permit(:product_id, :user_id, :quantity)
   end
 end

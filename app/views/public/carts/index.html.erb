@@ -24,7 +24,7 @@
 							<% @user.carts.each do |cart| %>
 							<tr>
 								<td>
-									<%= attachment_image_tag cart.product, :product_image_id, format: 'jpeg', fallback: "no_image.jpg" %>
+									<%= attachment_image_tag cart.product, :product_image, format: 'jpeg', fallback: "no_image.jpg" %>
 									<%= cart.product.product_name %>
 								</td>
 								<td><%= cart.product.price.round(0) %></td>
@@ -34,7 +34,7 @@
 										<%= f.submit "変更" %>
 									<% end %>
 								</td>
-								<td><%= cart.quantity * cart.product.price %></td>
+								<td><%= cart.quantity.to_i * (cart.product.price.to_i * 1.1) %></td>
 								<td><%= link_to '削除する', method: :delete, class: "btn-sm btn-danger" %></td>
 							</tr>
 							<% end %>

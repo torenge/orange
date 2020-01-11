@@ -2,7 +2,7 @@ class Public::CartsController < ApplicationController
   def index
     @user = current_user
   	@cart = Cart.find(params[:id])
-    price = @cart.product.price * 1.1
+    #price = @cart.product.price * 1.1
   end
 
   def create #OP作成
