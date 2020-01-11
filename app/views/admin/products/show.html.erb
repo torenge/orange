@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,5 +6,33 @@
 </head>
 <body>
 
+<h1>商品詳細画面</h1>
+
+<%= attachment_image_tag @product, :product_image, :fill, 100, 100, format: 'jpeg' %>
+<div class="field row">
+	<label for="product-name">商品名</label>
+	<%= @product.product_name %>
+</div>
+<div class="field row">
+	<label for="introduction">商品説明</label>
+	<%= @product.introduction %>
+</div>
+<div class="field row">
+	<label for="genre">ジャンル</label>
+	<%= @product.genre.genre_name %>
+</div>
+<div class="field row">
+	<label for="price">税込価格(税抜価格)</label>
+	<%= @product.price %>
+	<label>円</label>
+</div>
+<div class="field row">
+	<label for="product-status">販売ステータス</label>
+	<%= @product.status %>
+</div>
+
+<%= link_to "編集する", edit_admin_product_path(@product.id) %>
+
 </body>
 </html>
+
