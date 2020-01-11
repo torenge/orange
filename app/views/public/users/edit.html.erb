@@ -1,1 +1,53 @@
-public/users/edit
+
+	<p>
+	<strong>登録情報編集</strong>
+	<%= link_to "退会する" , withdraw_public_user_path(@user), class: "btn btn-danger" %>
+	</p>
+
+	<%= form_for(@user, url:"/public/users/#{@user.id}") do |f| %>
+	<table class="table table-hover table-inverse">
+
+
+		<tr>
+			<td>氏名</td>
+			<td><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+	    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+	    </td>
+		</tr>
+
+	    <tr>
+			<td>カナ</td>
+			<td><%= f.text_field :kana_first_name, autofocus: true, autocomplete: "kana_first_name" %>
+	    <%= f.text_field :kana_last_name, autofocus: true, autocomplete: "kana_last_name" %>
+	    </td>
+		</tr>
+
+		<tr>
+			<td>郵便番号</td>
+			<td><span>〒</span>
+				<%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+		</td>
+		</tr>
+
+		<tr>
+			<td>住所</td>
+			<td><%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+		</td>
+		</tr>
+
+		<tr>
+			<td>電話番号</td>
+			<td><%= f.text_field :tel_num, autofocus: true, autocomplete: "tel_num" %>
+		</td>
+		</tr>
+
+		<tr>
+			<td>メールアドレス</td>
+			<td><%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+		</td>
+		</tr>
+		 </table>
+	    <%= f.submit '編集内容を保存する',  class: "btn btn-primary" %>
+
+	<% end %>
+
