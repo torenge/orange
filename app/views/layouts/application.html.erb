@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Orange</title>
+    <title>ながのcakeオレンジ</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,7 +10,6 @@
   </head>
 
   <body>
-
     <div class="header" id="header">
         <div class="container">
           <div id="slidemenu">
@@ -33,7 +32,18 @@
                 <li class="">
                   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
                 </li>
+              <% elsif user_signed_in? %>
+                <ul class="nav navbar-nav navbar-right">
+                            <li><%= link_to "マイページ" ,public_user_path(current_user.id) %></li>
+                            <li><%= link_to "アバウト" ,public_user_path(current_user.id) %></li>
+                            <li><%= link_to "商品一覧" ,"/" %></li>
+                            <li><%= link_to "カート" ,public_carts_path %></li>
+                            <li><%= link_to "ログアウト" ,destroy_user_session_path, method: :delete %></li>
               <% else %>
+                <li><%= link_to "アバウト" ,"/" %></li>
+                <li><%= link_to "商品一覧" ,"/" %></li>
+                <li><%= link_to "会員登録" ,new_user_registration_path %></li>
+                <li><%= link_to "ログイン" ,new_user_session_path %></li>
               <% end %>
             </ul>
           </div>
