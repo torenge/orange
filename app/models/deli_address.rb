@@ -4,8 +4,6 @@ class DeliAddress < ApplicationRecord
 
 	belongs_to :user
 
-  acts_as_paranoid
-
 	   composed_of :fullname,
               :class_name => "FullName",
               :mapping => [
