@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 2020_01_12_052035) do
     t.integer "tel_num"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
   end
 
   create_table "genres", force: :cascade do |t|
