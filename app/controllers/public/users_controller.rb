@@ -1,5 +1,8 @@
 	class Public::UsersController < ApplicationController
 		def index
+			@products = Product.page(params[:page]).per(8)
+  			@genres = Genre.all
+  			@genre = Genre.find_by(params[:id])
 		end
 
 		def edit

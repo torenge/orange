@@ -4,13 +4,13 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :カナ性名 %>
+    <%= f.label :カナ姓名 %>
     <%= f.text_field :kana_first_name, autofocus: true, autocomplete: "kana_first_name" %>
     <%= f.text_field :kana_last_name, autofocus: true, autocomplete: "kana_last_name" %>
   </div>
 
   <div class="field">
-    <%= f.label :性名 %>
+    <%= f.label :姓名 %>
     <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
     <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
   </div>

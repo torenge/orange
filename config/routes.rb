@@ -1,8 +1,8 @@
   Rails.application.routes.draw do
 
-    get 'public/users/:id/withdraw' => 'public/users#withdraw', as: 'withdraw_public_user'
-
-    root 'public/users#index'
+  root 'public/products#index'
+  get 'public/products/genreshow/:id' => "public/products#genreshow", as: "public_products_genreshow"
+  get 'public/users/:id/withdraw' => 'public/users#withdraw', as: 'withdraw_public_user'
 
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -10,7 +10,14 @@
     sessions: 'admins/sessions'
   }
 
-
+  namespace :public do
+    resources :users, only: [:index, :edit, :show, :update]
+    resources :deli_addresses, only: [:index, :create, :edit, :update, :destroy]
+    resources :carts, only: [:index, :create, :update, :destroy]
+    resources :products, only: [:index, :genreshow, :show, :create]
+    resources :order_products, only: [:index, :new,  :create, :show, :update]
+    resources :orders, only: [:index, :show]
+  end
 
     namespace :public do
       resources :users, only: [:index, :edit, :show, :update, :withdraw, :destroy]

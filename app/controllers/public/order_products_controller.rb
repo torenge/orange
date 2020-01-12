@@ -1,5 +1,6 @@
 class Public::OrderProductsController < ApplicationController
   def index
+    @order_product = OrderProduct.find(params[:id])
   end
 
   def new
