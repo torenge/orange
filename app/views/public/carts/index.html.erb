@@ -1,1 +1,58 @@
-public/carts/index
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ながのcakeオレンジ</title>
+</head>
+<body>
+	<div class="body">
+		<div class="container">
+			<h1>ショッピングカート</h1>
+			<%= link_to "カートを空にする", method: :delete_all %>
+			<div class="row">
+				<div class="col-xs-10">
+					<table>
+						<thead>
+							<tr>
+								<th>商品名</th>
+								<th>単価(税込)</th>
+								<th>数量</th>
+								<th>小計</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @user.carts.each do |cart| %>
+							<tr>
+								<td>
+									<%= attachment_image_tag cart.product, :product_image, format: 'jpeg', fallback: "no_image.jpg" %>
+									<%= cart.product.product_name %>
+								</td>
+								<td><%= cart.product.price.round(0) %></td>
+								<td>
+									<%= form_for(@cart) do |f| %>
+										<%= f.text_field :quantity class: "col-xs-1" %>
+										<%= f.submit "変更" %>
+									<% end %>
+								</td>
+								<td><%= cart.quantity.to_i * (cart.product.price.to_i * 1.1) %></td>
+								<td><%= link_to '削除する', method: :delete, class: "btn-sm btn-danger" %></td>
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
+					<%= link_to "買い物を続ける" %><!--products/indexに飛ぶ-->
+					<table>
+						<tbody>
+							<tr>
+								<td>合計金額</td>
+								<td><% sum(@user.cart.quantity * @user.cart.product.price) %></td>
+							</tr>
+						</tbody>
+					</table>
+					<%= f.submit "情報入力に進む" %><!--OP作成&OP/newに飛ぶ-->
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
