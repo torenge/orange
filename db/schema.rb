@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_09_062758) do
+ActiveRecord::Schema.define(version: 2020_01_12_045943) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,38 +28,6 @@ ActiveRecord::Schema.define(version: 2020_01_09_062758) do
     t.integer "product_id"
     t.integer "user_id"
     t.integer "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
-  end
-
-  create_table "deli_addresses", force: :cascade do |t|
-    t.integer "user_id"
-    t.text "address"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "kana_first_name"
-    t.string "kana_last_name"
-    t.integer "postal_code"
-    t.integer "tel_num"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
-  end
-
-  create_table "genres", force: :cascade do |t|
-    t.string "genre_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "main_accounts", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "kana_first_name"
-    t.string "kana_last_name"
-    t.string "mail_address"
-    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -112,7 +80,6 @@ ActiveRecord::Schema.define(version: 2020_01_09_062758) do
     t.string "postage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
   end
 
   create_table "products", force: :cascade do |t|
