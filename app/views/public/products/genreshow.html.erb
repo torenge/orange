@@ -18,7 +18,7 @@
 							<% @genres.each do |genre| %>
 							<tr>
 								<td>
-									<%= link_to public_products_path(genre) do %>
+									<%= link_to public_products_genreshow_path do %>
 										<%= genre.genre_name %>
 									<% end %>
 								</td>

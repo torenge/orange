@@ -2,7 +2,7 @@ class Public::ProductsController < ApplicationController
   def genreshow
     @products = Product.page(params[:page]).per(8)
   	@genres = Genre.all
-  	@genre = Genre.find_by(params[:genre_id])
+  	@genre = Genre.find_by(params[:id])
   end
 
   def show
@@ -14,9 +14,6 @@ class Public::ProductsController < ApplicationController
 
   def create
     @cart = Cart.new(cart_params)
-    print "aaa"
-    print @cart.product_id
-    print "bbb"
     @cart.user_id = current_user.id
     @cart.save!
   end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root 'public/users#index'
-  get 'public/products/genreshow' => "publicproducts#genreshow"
+  get 'public/products/genreshow' => "public/products#genreshow"
 
 
   devise_for :users
