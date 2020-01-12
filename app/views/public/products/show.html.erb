@@ -1,2 +1,48 @@
-<h1>Public::Products#show</h1>
-<p>Find me in app/views/public/products/show.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ながのcakeオレンジ</title>
+</head>
+<body>
+	<div class="body">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-2">
+					<table>
+						<thead>
+							<tr>
+								<th>ジャンル検索</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @genres.each do |genre| %>
+							<tr>
+								<td>
+									<%= link_to public_products_genreshow_path do %>
+										<%= genre.genre_name %>
+									<% end %>
+								</td>
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-8">
+					<%= attachment_image_tag @product, :product_image, format: 'jpeg', fallback: "no_image.jpg" %>
+					<%= @product.product_name %>
+					<%= @product.introduction %>
+					¥<%= (@product.price.to_i * 1.1).round(0) %>(税込)
+					<%= form_for @cart, url: public_products_genreshow_path do |f| %>
+						<label>数量</label>
+						<%= f.select :quantity, [["1", 1], ["2", 2]] %>
+						<%= f.hidden_field :product_id, :value => @product.id %>
+						<%= f.submit "カートに入れる" %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
