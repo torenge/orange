@@ -2,6 +2,7 @@
 
   root 'public/products#index'
   get 'public/products/genreshow/:id' => "public/products#genreshow", as: "public_products_genreshow"
+  delete 'public/carts' => "public/carts#delete_all"
   get 'public/users/:id/withdraw' => 'public/users#withdraw', as: 'withdraw_public_user'
 
   devise_for :users
@@ -13,9 +14,9 @@
   namespace :public do
     resources :users, only: [:index, :edit, :show, :update]
     resources :deli_addresses, only: [:index, :create, :edit, :update, :destroy]
-    resources :carts, only: [:index, :create, :update, :destroy]
+    resources :carts, only: [:index, :create, :update, :destroy, :destroy_all]
     resources :products, only: [:index, :genreshow, :show, :create]
-    resources :order_products, only: [:index, :new,  :create, :show, :update]
+    resources :order_products, only: [:index, :edit, :show, :update, :create]
     resources :orders, only: [:index, :show]
   end
 
