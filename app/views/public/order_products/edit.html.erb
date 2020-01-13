@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ながのcakeオレンジ</title>
+</head>
+<body>
+	<div class="body">
+		<div class="container">
+			<div class="row">
+				<h1>購入情報入力</h1>
+				<%= form_for(@order, url: public_order_product_path(@order)) do |f| %>
+					<h2>支払方法</h2>
+						<P><%= f.radio_button :pay_method, "クレジットカード" %>クレジットカード</P>
+						<p><%= f.radio_button :pay_method, "銀行振込" %>銀行振込</p>
+					<h2>お届け先</h2>
+						<P>
+							<%= f.radio_button :deli_address_id, "null" %>
+							ご自身の住所<br>
+							〒<%= @order.user.postal_code %><br>
+							<%= @order.user.address %><br>
+							<%= @order.user.first_name %>
+							<%= @order.user.last_name %>
+						</P>
+
+						<p>
+							<%= f.radio_button :deli_address_id do %>
+								<%= deli_address.id %>
+							<% end %>
+							登録済住所から選択
+							<select name="deli_address.id">
+								<% @user.deli_addresses.each do |deli_address| %>
+									<option value="deli_addresses.id">
+										<%= deli_address.address %>
+									</option>
+								<% end %>
+							</select>
+						</p>
+
+						<p>
+							<%= f.radio_button :deli_address_id, "新しいお届け先" %><!--deli_addressを新規作成-->
+							新しいお届け先
+
+						</p>
+
+					<%= f.submit "確認画面へ進む" %><!--注文情報確定/orderproduct/showに飛ぶ-->
+				<% end %>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

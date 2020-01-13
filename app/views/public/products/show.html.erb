@@ -34,7 +34,7 @@
 					<%= @product.product_name %>
 					<%= @product.introduction %>
 					¥<%= (@product.price.to_i * 1.1).round(0) %>(税込)
-					<%= form_for @cart, url: public_products_genreshow_path do |f| %>
+					<%= form_for @cart, url: "/public/products" do |f| %>
 						<label>数量</label>
 						<%= f.select :quantity, [["1", 1], ["2", 2]] %>
 						<%= f.hidden_field :product_id, :value => @product.id %>
@@ -45,4 +45,4 @@
 		</div>
 	</div>
 </body>
-</html>
+</html
