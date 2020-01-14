@@ -27,7 +27,10 @@
 				</div>
 				<div class="field row">
 					<label for="price">税込価格(税抜価格)</label>
-					<%= @product.price %>
+					<%= number_to_currency(@product.price.to_i * 1.1, :unit => "", :precision => 0) %>
+
+					<label>(</label>
+					<%= number_to_currency(@product.price, :unit => "", :precision => 0) %><label>)</label>
 					<label>円</label>
 				</div>
 				<div class="field row">

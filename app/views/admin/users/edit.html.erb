@@ -7,13 +7,17 @@
 	<div class="field row"><label for="user-id">会員ID</label>
 	<%= @user.id %></div>
 
-	<%= form_for(@user) do |f| %>
+	<%= form_for [:admin, @user] do |f| %>
 		<div class="field row">
 			<%= f.label "氏名" %>
+			<%= f.text_field :first_name %>
+			<%= f.text_field :last_name %>
 		</div>
 
 		<div class="field row">
 			<%= f.label "フリガナ" %>
+			<%= f.text_field :kana_first_name %>
+			<%= f.text_field :kana_last_name %>
 		</div>
 
 		<div class="field row">
@@ -28,7 +32,7 @@
 
 		<div class="field row">
 			<%= f.label "電話番号" %>
-			<%= f.number_field :tel_num %>
+			<%= f.text_field :tel_num %>
 		</div>
 
 		<div class="field row">
@@ -38,6 +42,12 @@
 
 		<div class="field row">
 			<%= f.label "会員ステータス" %>
+
+			<%= f.radio_button :deleted_at, "有効" %>
+			<%= f.label :deleted_at, '有効'%>
+
+			<%= f.radio_button :deleted_at, "退会済み" %>
+			<%= f.label :deleted_at, "退会済み" %>
 		</div>
 
 		<%= f.submit "変更を保存する" %>

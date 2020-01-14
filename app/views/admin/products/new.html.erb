@@ -8,6 +8,8 @@
 		<div class="row">
 			<h1>商品 新規登録画面</h1>
 			<%= form_for [:admin, @product] do |f| %>
+
+				<% if @product.errors.any%>
 				<div class="col-md-4">
 						
 						<%= f.attachment_field :product_image %>

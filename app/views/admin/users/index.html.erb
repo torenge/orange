@@ -5,27 +5,43 @@
 		<title>ながのCAKEオレンジ</title>
 	</head>
 	<body>
-		<h1>会員一覧画面</h1>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<h2>会員一覧画面</h2>
+				</div>
+		</div>
 
-		<table>
-			<thead>
-				<tr>
-					<th>会員ID</th>
-					<th>氏名</th>
-					<th>メールアドレス</th>
-					<th>ステータス</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @users.each do |user| %>
-					<tr>
-						<td><%= user.id %></td>
-						<td>ユーザー氏名</td>
-						<td><%= user.email %></td>
-						<td>ステータス</td>
-					</tr>
-				<% end %>
-			</tbody>
-		</table>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>会員ID</th>
+								<th>氏名</th>
+								<th>メールアドレス</th>
+								<th>ステータス</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @users.each do |user| %>
+								<tr>
+									<td><%= user.id %></td>
+									<td><%= link_to user.fullname, admin_user_path(user.id) %></td>
+									<td><%= user.email %></td>
+									<% if user.deleted_at == nil %>
+										<td>有効</td>
+									<% else %>
+										<td>退会済み</td>
+									<% end %>
+								</tr>
+							<% end %>
+							<%= paginate @users, class: "paginate" %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

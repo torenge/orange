@@ -11,10 +11,24 @@ class Admin::OrdersController < Admin::ApplicationController
   end
 
   def update
+    @order = Order.find(params[:id])
+
+    if order.status == 2
+        order_product.status => 2
+        @order_product.(order_product_params)
+    elsif order_product.status == 3
+          order.status => 3
+          @order.update(order_params)
+    elsif order_product.status == 4
+          order.status => 4
+          @order.update(order_params)
+    else
+        redirect_to admin_order_path(order.id)
+    end
   end
 
   private
   	def order_params
-  		params.require(:order).permit(:deli_address_id, :user_id, :payment, :status, :pay_method, :postage, :deleted_at)
+  		params.require(:order).permit(:deli_address_id, :user_id, :payment, :status, :pay_method, :postage)
   	end
 end

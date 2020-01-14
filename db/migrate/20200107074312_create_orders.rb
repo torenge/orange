@@ -9,7 +9,6 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string :postage
       t.datetime :created_at
       t.datetime :updated_at
-
       t.timestamps
     end
   end
