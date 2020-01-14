@@ -1,47 +1,62 @@
 
-		<strong>配送先登録/一覧</strong>
+	<% if @deli_addressesx.errors.any? %>
+	  <div class="alert alert-warning">
+	    <ul>
+	      <li><%= pluralize(@deli_addressesx.errors.count, "error") %> prohibited this obj from being saved:</li>
+	      <% @deli_addressesx.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+	      <% end %>
+	    </ul>
+	  </div>
+	<% end %>
+
+	<div class="container">
+		<div class="row">
+			<h4>配送先登録/一覧</h4>
 
 
-		<%= form_for(@deli_addressesx, url:"/public/deli_addresses") do |f| %>
-		<table>
-	        <tr>
-				<td>郵便番号</td>
-				<td><%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
-		        </td>
-			</tr>
-	        <tr>
-				<td>住所</td>
-				<td><%= f.text_field :address, autofocus: true, autocomplete: "address" %>
-		        </td>
-			</tr>
-	         <tr>
-				<td>宛名</td>
-				<td><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-		    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
-			　　</td>
-			 </tr>
-	</table>
-		    <%= f.submit '登録する',class: "btn btn-primary"  %>
-
-		<% end %>
-
-		<table class="table table-hover table-bordered">
-		　　　<thead>
-			<tr class="active">
-				<th>郵便番号</th>
-				<th>住所</th>
-				<th>宛名</th>
-				<th></th>
-			</tr>
-		</thead>
-
-		<% @deli_addresses.each do |deliaddress| %>
-			<tr>
-				<td><%= deliaddress.postal_code %></td>
-				<td><%= deliaddress.address %></td>
-				<td><%= deliaddress.fullname %></td>
-				<td><%= link_to "編集する", edit_public_deli_address_path(deliaddress.id),class: "btn btn-primary" %>
-		             <%= link_to "削除する",public_deli_address_path(deliaddress.id), method: :delete, data: {confirm: "本当に消しますか？"} ,class: "btn btn-danger"%></td>
-		    </tr>
-		    <% end %>
+			<%= form_for(@deli_addressesx, url:"/public/deli_addresses") do |f| %>
+			<table class="table-bordered">
+		        <tr>
+					<td class="col-md-3">郵便番号</td>
+					<td class="col-md-7"><%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+			        </td>
+				</tr>
+		        <tr>
+					<td class="col-md-3">住所</td>
+					<td class="col-md-7"><%= f.text_field :address, :size=>"42", autofocus: true, autocomplete: "address" %>
+			        </td>
+				</tr>
+		         <tr>
+					<td class="col-md-3">宛名</td>
+					<td class="col-md-7"><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+			    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+				　　</td>
+				 </tr>
 		</table>
+			 <%= f.submit '登録する',class: "btn btn-primary"  %>
+			<% end %>
+</div>
+<div class="row">
+			<table class="table-bordered">
+			　　　<thead>
+				<tr class="active">
+					<th class="col-xs-2">郵便番号</th>
+					<th class="col-xs-5">住所</th>
+					<th class="col-xs-2">宛名</th>
+					<th class="col-xs-5"></th>
+				</tr>
+			</thead>
+
+			<% @deli_addresses.each do |deliaddress| %>
+				<tr>
+					<td><%= deliaddress.postal_code %></td>
+					<td><%= deliaddress.address %></td>
+					<td><%= deliaddress.fullname %></td>
+					<td><%= link_to "編集する", edit_public_deli_address_path(deliaddress.id),class: "btn btn-primary" %>
+			             <%= link_to "削除する",public_deli_address_path(deliaddress.id), method: :delete, data: {confirm: "本当に消しますか？"} ,class: "btn btn-danger"%></td>
+			    </tr>
+			    <% end %>
+			</table>
+		</div>
+	</div>
