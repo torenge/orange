@@ -1,20 +1,21 @@
 class Public::ProductsController < ApplicationController
   def index
-    @products = Product.page(params[:page]).per(8)
+    @products = Product.all
+    @product = Product.page(params[:page]).per(8)
     @genres = Genre.all
     @genre = Genre.find_by(params[:id])
   end
 
   def genreshow
-    @products = Product.page(params[:page]).per(8)
+    @products = Product.all
   	@genres = Genre.all
   	@genre = Genre.find_by(params[:id])
+    @product = @genre.products.page(params[:page]).per(8)
   end
 
   def show
-  	@genres = Genre.all
-  	@genre = Genre.find(params[:id])
-  	@product = Product.find(params[:id])
+    @genres = Genre.all
+    @product = Product.find(params[:id])
     @cart = Cart.new
   end
 
@@ -22,6 +23,7 @@ class Public::ProductsController < ApplicationController
     @cart = Cart.new(cart_params)
     @cart.user_id = current_user.id
     @cart.save!
+    redirect_to public_carts_path
   end
 
   private
