@@ -1,4 +1,4 @@
-class Public::UsersController < ApplicationController
+class Public::UsersController < Public::ApplicationController
 
    before_action :login_check, only: [:show,:edit, :update,:withdraw,:destroy]
 

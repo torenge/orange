@@ -1,4 +1,4 @@
-class Public::CartsController < ApplicationController
+class Public::CartsController < Public::ApplicationController
   def index
     @user = current_user
     @order = Order.new
