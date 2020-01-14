@@ -1,6 +1,10 @@
 class Public::CartsController < Public::ApplicationController
   def index
     @user = current_user
+    #@total = []
+    #@user.carts.each do |cart|
+    #  @total << cart.quantity.to_i * (cart.price.to_i * 1.1).round(0)
+    #end
     @order = Order.new
   end
 
