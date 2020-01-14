@@ -4,39 +4,50 @@
 		<title>ながのCAKEオレンジ</title>
 	</head>
 	<body>
-		<h1>会員詳細画面</h1>
+		<div class="container">
+			<h1>会員詳細画面</h1>
 
-		<div class="field row">
-			<label for="user-id">顧客ID</label>
-			<%= @user.id %>
-		</div>
+			<div class="field row">
+				<label for="user-id">顧客ID</label>
+				<%= @user.id %>
 
-		<div class="field row">
-			<label for="fullname">氏名</label>
-		</div>
+				<% if @user.deleted_at == nil %>
+					<span class="label label-info">有効会員</span>
+				<% else %>
+					<span class="label label-danger">退会済み</span>
+				<% end %>
+			</div>
 
-		<div class="field row">
-			<label for="kana-fullname">フリガナ</label>
-		</div>
+			<div class="field row">
+				<label for="fullname"><%= @user.fullname %></label>
+			</div>
 
-		<div class="field row">
-			<label for="postal-code">郵便番号</label>
-			<%= @user.postal_code %>
-		</div>
+			<div class="field row">
+				<label for="kana-fullname"><%= @user.kana_fullname %></label>
+			</div>
 
-		<div class="field row">
-			<label for="address">住所</label>
-			<%= @user.address %>
-		</div>
+			<div class="field row">
+				<label for="postal-code">郵便番号</label>
+				<%= @user.postal_code %>
+			</div>
 
-		<div class="field row">
-			<label for="tel_num">電話番号</label>
-			<%= @user.tel_num%>
-		</div>
+			<div class="field row">
+				<label for="address">住所</label>
+				<%= @user.address %>
+			</div>
 
-		<div class="field row">
-			<label for="email">メールアドレス</label>
-			<%= @user.email %>
+			<div class="field row">
+				<label for="tel_num">電話番号</label>
+				<%= @user.tel_num %>
+			</div>
+
+			<div class="field row">
+				<label for="email">メールアドレス</label>
+				<%= @user.email %>
+			</div>
+
+			<%= link_to "編集する", edit_admin_user_path(@user) %>
+			<%= link_to "注文履歴一覧を見る", admin_orders_path %>
 		</div>
 	</body>
 </html>
