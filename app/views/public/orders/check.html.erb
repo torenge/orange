@@ -45,7 +45,7 @@
 								<th>商品合計</th>
 								<td>
 									<%#<%= @order.order_products.all.sum(:quantity.to_i * (:total.to_i * 1.1).round(0)) %>
-									<%= @order.order_products.inject(0, ) %>
+									<%= @order.order_products.inject(0){|sum, quantity, total| sum + } %>
 								</td>
 							</tr>
 							<tr>
