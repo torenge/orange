@@ -1,4 +1,4 @@
-class Public::DeliAddressesController < ApplicationController
+class Public::DeliAddressesController < Public::ApplicationController
 
    before_action :login_check, only: [:edit,:update,:destroy]
 
