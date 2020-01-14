@@ -1,1 +1,31 @@
-admin/users/edit
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ながのCAKEオレンジ</title>
+	</head>
+	<body>
+		<h1>会員一覧画面</h1>
+
+		<table>
+			<thead>
+				<tr>
+					<th>会員ID</th>
+					<th>氏名</th>
+					<th>メールアドレス</th>
+					<th>ステータス</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @users.each do |user| %>
+					<tr>
+						<td><%= user.id %></td>
+						<td>ユーザー氏名</td>
+						<td><%= user.email %></td>
+						<td>ステータス</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</body>
+</html>

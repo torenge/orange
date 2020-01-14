@@ -1,7 +1,9 @@
   Rails.application.routes.draw do
 
   root 'public/products#index'
-  get 'public/products/genreshow/:id' => "public/products#genreshow", as: "public_products_genreshow"
+  get 'public/products/genreshow/:id' => "public/products#genreshow", as: "public_product_genreshow"
+  get 'public/orders/check/:id' => "public/orders#check", as: "public_order_check"
+  delete 'public/carts' => "public/carts#delete_all"
   get 'public/users/:id/withdraw' => 'public/users#withdraw', as: 'withdraw_public_user'
 
   devise_for :users
@@ -10,22 +12,13 @@
     sessions: 'admins/sessions'
   }
 
-  namespace :public do
-    resources :users, only: [:index, :edit, :show, :update]
-    resources :deli_addresses, only: [:index, :create, :edit, :update, :destroy]
-    resources :carts, only: [:index, :create, :update, :destroy]
-    resources :products, only: [:index, :genreshow, :show, :create]
-    resources :order_products, only: [:index, :new,  :create, :show, :update]
-    resources :orders, only: [:index, :show]
-  end
-
     namespace :public do
       resources :users, only: [:index, :edit, :show, :update, :withdraw, :destroy]
       resources :deli_addresses, only: [:index, :create, :edit, :update, :destroy]
-      resources :carts, only: [:index, :create, :update, :destroy]
-      resources :products, only: [:index, :show]
-      resources :order_products, only: [:index, :new,  :create, :show, :update]
-      resources :orders, only: [:index, :show]
+      resources :carts, only: [:index, :create, :update, :destroy, :delete_all]
+      resources :products, only: [:index, :genreshow, :show, :create]
+      resources :order_products, only: [:index, :edit, :show, :update, :create]
+      resources :orders, only: [:index, :show, :check]
     end
 
 

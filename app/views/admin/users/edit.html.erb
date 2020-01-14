@@ -1,31 +1,47 @@
-
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>ながのCAKEオレンジ</title>
-	</head>
-	<body>
-		<h1>会員一覧画面</h1>
+<head>
+	<title>ながのCAKEオレンジ</title>
+</head>
+<body>
+	<div class="field row"><label for="user-id">会員ID</label>
+	<%= @user.id %></div>
 
-		<table>
-			<thead>
-				<tr>
-					<th>会員ID</th>
-					<th>氏名</th>
-					<th>メールアドレス</th>
-					<th>ステータス</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @users.each do |user| %>
-					<tr>
-						<td><%= user.id %></td>
-						<td>ユーザー氏名</td>
-						<td><%= user.email %></td>
-						<td>ステータス</td>
-					</tr>
-				<% end %>
-			</tbody>
-		</table>
-	</body>
+	<%= form_for(@user) do |f| %>
+		<div class="field row">
+			<%= f.label "氏名" %>
+		</div>
+
+		<div class="field row">
+			<%= f.label "フリガナ" %>
+		</div>
+
+		<div class="field row">
+			<%= f.label "郵便番号" %>
+			<%= f.text_field :postal_code %>
+		</div>
+
+		<div class="field row">
+			<%= f.label "住所" %>
+			<%= f.text_area :address %>
+		</div>
+
+		<div class="field row">
+			<%= f.label "電話番号" %>
+			<%= f.number_field :tel_num %>
+		</div>
+
+		<div class="field row">
+			<%= f.label "メールアドレス" %>
+			<%= f.email_field :email %>
+		</div>
+
+		<div class="field row">
+			<%= f.label "会員ステータス" %>
+		</div>
+
+		<%= f.submit "変更を保存する" %>
+	<% end %>
+
+</body>
 </html>

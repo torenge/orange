@@ -7,7 +7,7 @@
 	<div class="body">
 		<div class="container">
 			<h1>ショッピングカート</h1>
-			<%= link_to "カートを空にする", method: :delete_all %>
+			<%= link_to "カートを空にする", public_carts_path, method: :delete %>
 			<div class="row">
 				<div class="col-xs-10">
 					<table>
@@ -22,34 +22,38 @@
 						</thead>
 						<tbody>
 							<% @user.carts.each do |cart| %>
-							<tr>
-								<td>
-									<%= attachment_image_tag cart.product, :product_image, format: 'jpeg', fallback: "no_image.jpg" %>
-									<%= cart.product.product_name %>
-								</td>
-								<td><%= cart.product.price.round(0) %></td>
-								<td>
-									<%= form_for(@cart) do |f| %>
-										<%= f.text_field :quantity class: "col-xs-1" %>
-										<%= f.submit "変更" %>
-									<% end %>
-								</td>
-								<td><%= cart.quantity.to_i * (cart.product.price.to_i * 1.1) %></td>
-								<td><%= link_to '削除する', method: :delete, class: "btn-sm btn-danger" %></td>
-							</tr>
+								<tr>
+									<td>
+										<%= attachment_image_tag cart.product, :product_image, :fill, 100, 100,  format: 'jpeg', fallback: "no_image.jpg" %>
+										<%= cart.product.product_name %>
+									</td>
+									<td><%= (cart.product.price.to_i * 1.1).round(0) %></td>
+									<td>
+										<%= form_for(cart, url: public_cart_path(cart.id)) do |f| %>
+											<%= f.number_field :quantity %>
+											<%= f.submit "変更" %>
+										<% end %>
+									</td>
+									<td><%= cart.quantity.to_i * (cart.product.price.to_i * 1.1).round(0) %></td>
+									<td><%= link_to '削除する', public_cart_path(cart.id), method: :delete %></td>
+								</tr>
 							<% end %>
 						</tbody>
 					</table>
-					<%= link_to "買い物を続ける" %><!--products/indexに飛ぶ-->
+					<%= link_to "買い物を続ける", public_products_path %>
 					<table>
 						<tbody>
 							<tr>
 								<td>合計金額</td>
-								<td><% sum(@user.cart.quantity * @user.cart.product.price) %></td>
+								<td>
+									<%#<%= (cart.quantity.to_i * (cart.product.price.to_i * 1.1).round(0)).sum %>
+								</td>
 							</tr>
 						</tbody>
 					</table>
-					<%= f.submit "情報入力に進む" %><!--OP作成&OP/newに飛ぶ-->
+					<%= form_for @order, url: "/public/carts" do |f| %>
+						<%= f.submit "情報入力に進む" %>
+					<% end %>
 				</div>
 			</div>
 		</div>

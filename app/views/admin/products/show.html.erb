@@ -1,38 +1,45 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 	<title>ながのcakeオレンジ</title>
 </head>
 <body>
+	<div class="container">
+		<div class="row">
+			<h1>商品詳細画面</h1>
 
-<h1>商品詳細画面</h1>
+			<div class="col-md-4">
+				<%= attachment_image_tag @product, :product_image, :fill, 200, 200, format: 'jpeg' %>
+			</div>
 
-<%= attachment_image_tag @product, :product_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-<div class="field row">
-	<label for="product-name">商品名</label>
-	<%= @product.product_name %>
-</div>
-<div class="field row">
-	<label for="introduction">商品説明</label>
-	<%= @product.introduction %>
-</div>
-<div class="field row">
-	<label for="genre">ジャンル</label>
-	<%= @product.genre.genre_name %>
-</div>
-<div class="field row">
-	<label for="price">税込価格(税抜価格)</label>
-	<%= @product.price %>
-	<label>円</label>
-</div>
-<div class="field row">
-	<label for="product-status">販売ステータス</label>
-	<%= @product.status %>
-</div>
+			<div class="col-md-6">
+				<div class="field row">
+					<label for="product-name">商品名</label>
+					<%= @product.product_name %>
+				</div>
+				<div class="field row">
+					<label for="introduction">商品説明</label>
+					<%= @product.introduction %>
+				</div>
+				<div class="field row">
+					<label for="genre">ジャンル</label>
+					<%= @product.genre.genre_name %>
+				</div>
+				<div class="field row">
+					<label for="price">税込価格(税抜価格)</label>
+					<%= @product.price %>
+					<label>円</label>
+				</div>
+				<div class="field row">
+					<label for="product-status">販売ステータス</label>
+					<%= @product.status %>
+				</div>
 
-<%= link_to "編集する", edit_admin_product_path(@product.id) %>
-
+				<%= link_to edit_admin_product_path(@product.id) do %>
+					<button class="btn btn-primary">編集する</button>
+				<% end %>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
-

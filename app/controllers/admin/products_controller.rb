@@ -1,4 +1,4 @@
-class Admin::ProductsController < ApplicationController
+class Admin::ProductsController < Admin::ApplicationController
   def new
     @product = Product.new
     @genres = Genre.all
@@ -12,7 +12,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.page(params[:page]).reverse_order
+    @products = Product.order(:id).page(params[:page]).per(params[10])
   end
 
   def show
