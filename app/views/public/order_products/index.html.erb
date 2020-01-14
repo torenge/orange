@@ -7,55 +7,7 @@
 	<div class="body">
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-6">
-					<h1>注文情報確認</h1>
-					<table>
-						<thead>
-							<tr>
-								<th>商品名</th>
-								<th>単価(税込)</th>
-								<th>数量</th>
-								<th>小計</th>
-							</tr>
-						</thead>
-						<tbody>
-							<% @order_product.each do |cart| %>
-							<tr>
-								<td>
-									<%= attachment_image_tag @order_product.product, :product_image_id, format: 'jpeg', fallback: "no_image.jpg" %>
-									<%= @order_product.product.product.product_name %>
-								</td>
-								<td><%= @order_product.product.price %></td>
-								<td><%= @order_product.quantity %></td>
-								<td><%= @order_product.quantity * @order_product.product.price %></td>
-							</tr>
-							<% end %>
-						</tbody>
-					</table>
-				</div>
-				<div class="col-xs-3">
-					<table>
-						<tbody>
-							<tr>
-								<th>送料</th>
-								<td>800</td>
-							</tr>
-							<tr>
-								<th>商品合計</th>
-								<td>800</td>
-							</tr>
-							<tr>
-								<th>請求金額</th>
-								<td>800</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<h1>支払方法</h1>
-				<p></p>
-				<h1>お届け先</h1>
-				<p></p><!--郵便番号、住所、氏、名-->
-				<%= f.submit "購入を確定する" %><!--update/OPshow完了画面へ飛ぶ-->
+				<h1>ご購入ありがとうございました！</h1>
 			</div>
 		</div>
 	</div>

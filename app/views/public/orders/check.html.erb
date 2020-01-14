@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ながのcakeオレンジ</title>
+</head>
+<body>
+	<div class="body">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-7">
+					<h1>注文情報確認</h1>
+					<table>
+						<thead>
+							<tr>
+								<th>商品名</th>
+								<th>単価(税込)</th>
+								<th>数量</th>
+								<th>小計</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @order.order_products.each do |order_product| %>
+							<tr>
+								<td>
+									<%= attachment_image_tag order_product.product, :product_image, :fill, 100, 100,  format: 'jpeg', fallback: "no_image.jpg" %>
+									<%= order_product.product.product_name %>
+								</td>
+								<td><%= (order_product.total.to_i * 1.1).round(0) %></td>
+								<td><%= order_product.quantity %></td>
+								<td><%= order_product.quantity.to_i * (order_product.total.to_i * 1.1).round(0) %></td>
+							</tr>
+							<% end %>
+
+						</tbody>
+					</table>
+				</div>
+				<div class="col-xs-5">
+					<table>
+						<tbody>
+							<tr>
+								<th>送料</th>
+								<td><%= @order.postage %></td>
+							</tr>
+							<tr>
+								<th>商品合計</th>
+								<td></td>
+							</tr>
+							<tr>
+								<th>請求金額</th>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-xs-8">
+					<h1>支払方法</h1>
+					<%= @order.pay_method %>
+				</div>
+				<div class="col-xs-8">
+					<h1>お届け先</h1>
+					〒<%= @order.postal_code %><br>
+					<%= @order.address%><br>
+					<%= @order.first_name %>
+					<%= @order.last_name %>
+				</div>
+				<%= link_to "購入を確定する", public_order_products_path %>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
