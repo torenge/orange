@@ -16,9 +16,11 @@
 			</tr>
 		</thead>
 		<tbody>
+			<% @orders.each do |order| %>
 			<tr>
-				<td>data</td>
+				<td><%= order.created_at %></td>
 			</tr>
+			<% end %>
 		</tbody>
 	</table>
 
