@@ -5,6 +5,7 @@ class Public::OrderProductsController < ApplicationController
   def edit
     @user = current_user
     @order = Order.find(params[:id])
+    @deli_addresses = @user.deli_addresses
   end
 
   def show
@@ -13,20 +14,33 @@ class Public::OrderProductsController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    @order.update
-    redirect_to order_product_path(@order)
-    #自分の住所を選択した場合はdeli_address_idを取得しない
-    #お届け先で新しいお届け先を選択した場合、入力したものをdeli_addressで新規作成、それをdeli_address_idに流す
-  end
+    @user = current_user
+    if params[:order][:address_choice] == "1"
+      @order.address = current_user.address
+      @order.postal_code = current_user.postal_code
+      @order.first_name = current_user.first_name
+      @order.last_name = current_user.last_name
+      if params[:order][:pay_method] == "1"
+        @order.pay_method = "クレジットカード"
+      end
+      if params[:order][:pay_method] == "2"
+        @order.pay_method = "銀行振込"
+      end
+      @order.update(order_params)
+      redirect_to public_order_check_path(@order)
+    elsif params[:order][:address_choice] == "2"
+      @order.update(order_params)
+      redirect_to public_order_check_path(@order)
+    else params[:order][:address_choice] == "3"
+      @order.update(order_params)
+      redirect_to public_order_check_path(@order)
+    end
 
-  def create
-    @deli_address = DeliAddress.new
-    @deli_address.save
   end
 
   private
   def order_params
-    params.require(:order).permit(:deli_address_id)
+    params.require(:order).permit(:deli_address_id, :address, :postal_code, :first_name, :last_name)
   end
 
 

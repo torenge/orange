@@ -38,9 +38,6 @@ class Public::CartsController < ApplicationController
   	redirect_to edit_public_order_product_path(@order)
   end
 
-  def edit
-  end
-
   def delete_all
     @user = current_user
     @user.carts.delete_all

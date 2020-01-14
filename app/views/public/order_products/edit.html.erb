@@ -10,11 +10,11 @@
 				<h1>購入情報入力</h1>
 				<%= form_for(@order, url: public_order_product_path(@order)) do |f| %>
 					<h2>支払方法</h2>
-						<P><%= f.radio_button :pay_method, "クレジットカード" %>クレジットカード</P>
-						<p><%= f.radio_button :pay_method, "銀行振込" %>銀行振込</p>
+						<P><%= f.radio_button :pay_method, "1" %>クレジットカード</P>
+						<p><%= f.radio_button :pay_method, "2" %>銀行振込</p>
 					<h2>お届け先</h2>
 						<P>
-							<%= f.radio_button :deli_address_id, "null" %>
+							<%= f.radio_button :address_choice, "1" %>
 							ご自身の住所<br>
 							〒<%= @order.user.postal_code %><br>
 							<%= @order.user.address %><br>
@@ -22,27 +22,25 @@
 							<%= @order.user.last_name %>
 						</P>
 
-						<p>
-							<%= f.radio_button :deli_address_id do %>
-								<%= deli_address.id %>
-							<% end %>
+						<!--<p>
+							<%= f.radio_button :address_choice, "2" %>
 							登録済住所から選択
-							<select name="deli_address.id">
-								<% @user.deli_addresses.each do |deli_address| %>
-									<option value="deli_addresses.id">
-										<%= deli_address.address %>
-									</option>
-								<% end %>
-							</select>
+								<%= f.collection_select :address, @user.deli_addresses, :id, :address %>
 						</p>
 
 						<p>
-							<%= f.radio_button :deli_address_id, "新しいお届け先" %><!--deli_addressを新規作成-->
+							<%= f.radio_button :address_choice, "3" %>
 							新しいお届け先
+								<label>郵便番号</label>ハイフンなし
+								<%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+								<label>住所</label>
+								<%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+								<label>宛名</label>
+								<%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+								<%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+						</p>-->
 
-						</p>
-
-					<%= f.submit "確認画面へ進む" %><!--注文情報確定/orderproduct/showに飛ぶ-->
+					<%= f.submit "確認画面へ進む" %>
 				<% end %>
 			</div>
 		</div>
