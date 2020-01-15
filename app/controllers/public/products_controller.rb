@@ -11,7 +11,6 @@ class Public::ProductsController < Public::ApplicationController
   	@genres = Genre.all
   	@genre = Genre.find(params[:id])
     @product = @genre.products.page(params[:page]).per(8)
-    binding.pry
   end
 
   def show
