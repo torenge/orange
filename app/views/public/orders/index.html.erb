@@ -9,31 +9,36 @@
 			<div class="row">
 				<div class="">
 					<h1>注文履歴一覧</h1>
-					<table>
+					<table class="table-bordered">
 						<thead>
+							<tr>
 							<th>注文日</th>
 							<th>配送先</th>
 							<th>注文商品</th>
 							<th>支払金額</th>
 							<th>ステータス</th>
 							<th>注文詳細</th>
+						</tr>
 						</thead>
 						<tbody>
-							<td><%= @order.order_product.created_at %></td>
+							<% @orders.each do |order| %>
+							<tr>
+							<td><%= order.created_at.strftime('%Y/%m/%d') %></td>
 							<td>
-								<%= @order.deli_address.postalcode %>
-								<%= @order.deli_address.address %>
-								<%= @order.deli_address.first_name %>
-								<%= @order.deli_address.last_name %>
+								<p><%= order.postal_code %></p>
+								<p><%= order.address %></p>
+								<p><%= order.fullname %></p>
 							</td>
 							<td>
-							<% @order.order_products.each do |order_product| %>
-								<%= @order.order_products.product.product_name %>
+							<% order.order_products.each do |order_product| %>
+								<p><%= order_product.product.product_name %></p>
 							<% end %>
 							</td>
-							<td><%= @order.payment %></td>
-							<td><%= @order.status %></td>
-							<td><%= link_to "表示する" %></td>
+							<td><%= order.payment %></td>
+							<td><%= order.status %></td>
+							<td><%= link_to "表示する",public_order_path(order.id) %></td>
+						</tr>
+						<% end %>
 						</tbody>
 					</table>
 				</div>
