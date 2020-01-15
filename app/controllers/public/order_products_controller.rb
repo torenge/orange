@@ -26,12 +26,33 @@ class Public::OrderProductsController < Public::ApplicationController
       if params[:order][:pay_method] == "2"
         @order.pay_method = "銀行振込"
       end
-      @order.update(order_params)
+      @order.save
       redirect_to public_order_check_path(@order)
-    elsif params[:order][:address_choice] == "2"
-      @order.update(order_params)
+    end
+
+    if params[:order][:address_choice] == "2"
+      @deli_address = DeliAddress.find(params[:order][:deli_address_id])
+      @order.address = @deli_address.address
+      @order.postal_code = @deli_address.postal_code
+      @order.first_name = @deli_address.first_name
+      @order.last_name = @deli_address.last_name
+      if params[:order][:pay_method] == "1"
+        @order.pay_method = "クレジットカード"
+      end
+      if params[:order][:pay_method] == "2"
+        @order.pay_method = "銀行振込"
+      end
+      @order.save
       redirect_to public_order_check_path(@order)
-    else params[:order][:address_choice] == "3"
+    end
+
+    if params[:order][:address_choice] == "3"
+      if params[:order][:pay_method] == "1"
+        @order.pay_method = "クレジットカード"
+      end
+      if params[:order][:pay_method] == "2"
+        @order.pay_method = "銀行振込"
+      end
       @order.update(order_params)
       redirect_to public_order_check_path(@order)
     end
@@ -43,5 +64,8 @@ class Public::OrderProductsController < Public::ApplicationController
     params.require(:order).permit(:deli_address_id, :address, :postal_code, :first_name, :last_name)
   end
 
+  def deli_address_params
+    params.require(:deli_address).permit(:postal_code, :address, :first_name, :last_name)
+  end
 
 end

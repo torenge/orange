@@ -46,7 +46,7 @@
 							<tr>
 								<td>合計金額</td>
 								<td>
-									<%#<%= (cart.quantity.to_i * (cart.product.price.to_i * 1.1).round(0)).sum %>
+									<%= @total.inject{|sum, n| sum + n } %>
 								</td>
 							</tr>
 						</tbody>

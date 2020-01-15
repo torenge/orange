@@ -9,8 +9,8 @@ class Public::ProductsController < Public::ApplicationController
   def genreshow
     @products = Product.all
   	@genres = Genre.all
-  	@genre = Genre.find_by(params[:id])
-    @product = @genre.products.page(params[:page]).per(8)
+  	@genre = Genre.find(params[:id])
+    @product = Product.page(params[:page]).per(8)
   end
 
   def show
