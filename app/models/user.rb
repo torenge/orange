@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
              :recoverable, :rememberable, :validatable
 
-  has_many :deli_addresses, dependent: :destroy
-  has_many :orders, dependent: :destroy
-  has_many :carts, dependent: :destroy
+  has_many :deli_addresses
+  has_many :orders
+  has_many :carts
 
   acts_as_paranoid
 
