@@ -14,6 +14,8 @@ class User < ApplicationRecord
   validates :kana_last_name, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'カタカナで入力して下さい。'}
   validates :tel_num, presence: true, format: { with: /\A\d{10,11}\z/, message: ' ハイフン無しの半角数字、10桁or11桁で入力してください' }
   validates :postal_code, format: {with: /\A\d{7}\z/, message: ' ハイフン無しの半角数字、7桁で入力してください' }
+  validates :deleted_at, inclusion: {in: ["有効", "退会済み"]}
+  validates :address, presence: true
 
   composed_of :fullname,
                   :class_name => "FullName",

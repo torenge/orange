@@ -13,9 +13,10 @@ class Admin::UsersController < Admin::ApplicationController
 
 	def update
 		@user = User.with_deleted.find(params[:id])
-		@user.update(user_params)
+		
 		if params[:user][:deleted_at] == "有効"
 			@user.restore
+			@user.update(user_params)
 		else
 			@user.destroy
 		end
@@ -24,7 +25,7 @@ class Admin::UsersController < Admin::ApplicationController
 
 	private
 		def user_params
-			params.require(:user).permit(:first_name, :last_name, :kana_first_name, :kana_last_name, :postal_code, :address, :email, :tel_num, :deleted_at)
-		end
+	    params.require(:user).permit(:first_name, :last_name, :kana_first_name, :kana_last_name, :postal_code, :address, :tel_num, :email, :deleted_at)
+	end
 
 end
