@@ -41,7 +41,7 @@
 						<tbody>
 							<tr>
 								<th>商品合計</th>
-								<td><% @order.payment %></td>
+								<td>商品の個数の全合計</td>
 							</tr>
 							<tr>
 								<th>配送料</th>
@@ -71,7 +71,7 @@
 								<td><%= order_product.product.product_name %></td>
 								<td><%= order_product.total %></td>
 								<td><%= order_product.quantity %></td>
-								<td><% (order_product.total * order_product.quantity) %></td>
+								<td><% (order_product.total.to_i * order_product.quantity.to_i) %></td>
 							</tr>
 							<% end %>
 						</tbody>
