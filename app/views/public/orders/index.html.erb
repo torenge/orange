@@ -34,7 +34,11 @@
 								<p><%= order_product.product.product_name %></p>
 							<% end %>
 							</td>
-							<td><%= order.payment %></td>
+							<td>
+								<% order.order_products.each do |order_product| %>
+								<%= @total.inject{|sum, n| sum + n } + order.postage.to_i %>
+									<% end %>
+								</td>
 							<td><%= order.status %></td>
 							<td><%= link_to "表示する",public_order_path(order.id) %></td>
 						</tr>

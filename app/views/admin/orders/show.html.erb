@@ -22,19 +22,16 @@
 	</div>
 
 
-	<%= form_for [:admin, @order] do |f| %>
+<%= form_for [:admin, @order] do |f| %>
 		<div class="field row">
-			<label for="status">注文ステータス</label>
-			<%= f.select :status, ['入金待ち', '入金確認', '製作中', '発送準備中', '発送済み'], {:selected => '入金待ち'} %>
+			<%= f.label "販売ステータス" %>
+			<%= f.select :status, ['入金待ち', '入金確認', '製作中', '発送準備中', '発送済み'], {:selected => @order.status} %>
 		</div>
 
-		<div class="field row">
-			<%= f.submit "更新" , class: "btn btn-primary" %>
-		</div>
-	<% end %>
+		
 
 	<%# order_product index %>
-	<table>
+	<table class="table-bordered">
 		<thead>
 			<tr>
 				<th>商品名</th>
@@ -45,17 +42,21 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
+			
 				<% @order.order_products.each do |order_product| %>
+				<tr>
 					<td><%= order_product.product.product_name %></td>
 					<td><%= number_to_currency(order_product.total.to_i * 1.1, :unit => "", :precision => 0) %></td>
 					<td><%= order_product.quantity %></td>
 					<td><%= number_to_currency(order_product.total.to_i * 1.1 * order_product.quantity, :unit => "", :precision => 0) %></td>
-					<td><%= select :order_product, :status, ['着手不可', '製作待ち', '製作中', '製作完了'], {:selected => '着手不可'} %></td>
+				</tr>
 				<% end %>
-			</tr>
 		</tbody>
 	</table>
-
+	<%= f.fields_for (@order_product) do |i| %>
+						<%= i.select :status, ['着手不可', '製作待ち', '製作中', '製作完了'], {:selected => order_product.status} %>
+							<% end %>
+	<%= f.submit "更新" , class: "btn btn-primary" %>
+<% end %>
 </body>
 </html>

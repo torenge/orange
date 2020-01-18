@@ -41,11 +41,11 @@
 						<tbody>
 							<tr>
 								<th>商品合計</th>
-								<td>商品の個数の全合計</td>
+								<td><%= @total.inject{|sum, n| sum + n } %></td>
 							</tr>
 							<tr>
 								<th>配送料</th>
-								<td>800</td>
+								<td><%= @order.postage %></td>
 							</tr>
 							<tr>
 								<th>ご請求額</th>
@@ -66,6 +66,7 @@
 							</tr>
 						</thead>
 						<tbody>
+
 							<%= @order.order_products.each do |order_product| %>
 							<tr>
 								<td><%= order_product.product.product_name %></td>
