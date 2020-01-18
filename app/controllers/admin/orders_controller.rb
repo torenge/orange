@@ -1,6 +1,7 @@
 class Admin::OrdersController < Admin::ApplicationController
   def index
   	@orders = Order.all
+    binding.pry
     @order = Order.find(params[:id])
     @quantity = []
     @order.order_products.each do |order_product|

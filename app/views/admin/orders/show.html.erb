@@ -24,15 +24,17 @@
 		<label for="pay-method">支払方法</label>
 		<%= @order.pay_method %>
 	</div>
-			<label for="status">注文ステータス</label>
-			<%= f.select :status, Order.statuses.keys.map {|k| [k, k]} %>
+	<%= form_for [:admin, @order] do |f| %>
+	<div class="field row">
+		<label for="status">注文ステータス</label>
+		
 
-		</div>
+	</div>
 
-		<div class="field row">
-			<label for="pay-method">支払方法</label>
-			<%= @order.pay_method %>
-		</div>
+	<div class="field row">
+		<label for="pay-method">支払方法</label>
+		<%= @order.pay_method %>
+	</div>
 		<%# order_product index %>
 		<table>
 			<thead>
@@ -54,7 +56,7 @@
 					<% end %>
 
 					<%= f.fields_for :order_products, @order.order_products do |op_fields| %>
-						<td><%= op_fields.select :status, OrderProduct.statuses.keys.map {|k| [k,k]} %></td>
+						<td></td>
 						<%= f.submit "更新" , class: "btn btn-primary" %>
 
 					<% end %>
