@@ -1,7 +1,6 @@
 class Admin::MainAccountsController < Admin::ApplicationController
   def index
-  	@order = Order.all
-
+  	@orders = OrderProduct.where(created_at: Time.zone.now.all_day)
   end
 
   private

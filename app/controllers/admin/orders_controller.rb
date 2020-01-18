@@ -1,11 +1,6 @@
 class Admin::OrdersController < Admin::ApplicationController
   def index
-  	@orders = Order.all
-    @order = Order.find(params[:id])
-    @quantity = []
-    @order.order_products.each do |order_product|
-      @quantity << order_products.quantity.to_i
-    end
+  	@orders = Order.all.order("id DESC")
   end
 
   def show

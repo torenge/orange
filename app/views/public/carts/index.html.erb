@@ -6,45 +6,49 @@
 <body>
 	<div class="body">
 		<div class="container">
-			<h1>ショッピングカート</h1>
-			<%= link_to "カートを空にする", public_carts_path, method: :delete %>
+			<div class="row">
+				ショッピングカート
+				<%= link_to "カートを空にする", public_carts_path, method: :delete, class: "btn btn-danger" %>
+			</div>
 			<div class="row">
 				<div class="col-xs-10">
-					<table>
-						<thead>
+					<table border="1" class="table-responsive" width=1000 height=150>
+						<thead class="thead-light">
 							<tr>
-								<th>商品名</th>
-								<th>単価(税込)</th>
-								<th>数量</th>
-								<th>小計</th>
-								<th></th>
+								<th height=70>商品名</th>
+								<th width=15%>単価(税込)</th>
+								<th width=15%>数量</th>
+								<th width=15%>小計</th>
+								<th width=15%></th>
 							</tr>
 						</thead>
 						<tbody>
 							<% @user.carts.each do |cart| %>
 								<tr>
 									<td>
-										<%= attachment_image_tag cart.product, :product_image, :fill, 100, 100,  format: 'jpeg', fallback: "no_image.jpg" %>
+										<%= attachment_image_tag cart.product, :product_image, :fill, 70, 60,  format: 'jpeg', fallback: "no_image.jpg" %>
 										<%= cart.product.product_name %>
 									</td>
 									<td><%= (cart.product.price.to_i * 1.1).round(0) %></td>
 									<td>
 										<%= form_for(cart, url: public_cart_path(cart.id)) do |f| %>
 											<%= f.number_field :quantity %>
-											<%= f.submit "変更" %>
+											<%= f.submit "変更", class: "btn btn-primary" %>
 										<% end %>
 									</td>
 									<td><%= cart.quantity.to_i * (cart.product.price.to_i * 1.1).round(0) %></td>
-									<td><%= link_to '削除する', public_cart_path(cart.id), method: :delete %></td>
+									<td><%= link_to '削除する', public_cart_path(cart.id), method: :delete, class: "btn btn-danger" %></td>
 								</tr>
 							<% end %>
 						</tbody>
 					</table>
-					<%= link_to "買い物を続ける", public_products_path %>
-					<table>
+					<%= link_to "買い物を続ける", public_products_path, class: "btn btn-primary" %>
+					<table border="1" height=100>
 						<tbody>
 							<tr>
 								<td>合計金額</td>
+							</tr>
+							<tr>
 								<td>
 									<%= @total.inject{|sum, n| sum + n } %>
 								</td>
@@ -52,7 +56,7 @@
 						</tbody>
 					</table>
 					<%= form_for @order, url: "/public/carts" do |f| %>
-						<%= f.submit "情報入力に進む" %>
+						<%= f.submit "情報入力に進む", class: "btn btn-primary" %>
 					<% end %>
 				</div>
 			</div>
