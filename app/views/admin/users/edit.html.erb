@@ -4,8 +4,20 @@
 	<title>ながのCAKEオレンジ</title>
 </head>
 <body>
+
+	<% if @user.errors.any? %>
+		<div class="alert alert-warining">
+			<ul>
+				<li><%= pluralize(@user.errors.count, "error") %> prohibited this obj from being saved:</li>
+				<%= @user.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
 	<div class="field row"><label for="user-id">会員ID</label>
-	<%= @user.id %></div>
+	<div><%= @user.id %></div>
 
 	<%= form_for [:admin, @user] do |f| %>
 		<div class="field row">
@@ -46,7 +58,7 @@
 			<%= f.radio_button :deleted_at, "有効" %>
 			<%= f.label :deleted_at, '有効'%>
 
-			<%= f.radio_button :deleted_at, 'datetime' %>
+			<%= f.radio_button :deleted_at, "退会済み" %>
 			<%= f.label :deleted_at, "退会済み" %>
 		</div>
 

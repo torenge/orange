@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validates :tel_num, presence: true, format: { with: /\A\d{10,11}\z/, message: ' ハイフン無しの半角数字、10桁or11桁で入力してください' }
   validates :postal_code, format: {with: /\A\d{7}\z/, message: ' ハイフン無しの半角数字、7桁で入力してください' }
   validates :address, presence: true
-
+  validates :deleted_at, inclusion:{in: [true, false]}
   composed_of :fullname,
                   :class_name => "FullName",
                   :mapping => [

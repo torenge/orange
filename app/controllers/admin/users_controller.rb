@@ -13,14 +13,18 @@ class Admin::UsersController < Admin::ApplicationController
 
 	def update
 		@user = User.with_deleted.find(params[:id])
-		
-		if params[:user][:deleted_at] == "有効"
-			@user.restore
-			@user.update(user_params)
-		else
-			@user.destroy
+
+		if @user.update(user_params)
+			redirect_to admin_user_path(@user)
+
+			if params[:user][:deleted_at] == "有効"
+				@user.restore
+			elsif params[:user][:deleted_at] == "退会済み"
+				@user.destroy
+			end
+		else 
+			render :edit
 		end
-		redirect_to admin_user_path(@user)
 	end
 
 	private
