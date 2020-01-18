@@ -10,7 +10,6 @@ class Admin::OrdersController < Admin::ApplicationController
 
   def show
   	@order = Order.find(params[:id])
-    @order_products = @order.order_products
   	@user = User.find_by(params[:user_id])
     @product = Product.find_by(params[:product_id])
   end
