@@ -12,7 +12,6 @@ class Order < ApplicationRecord
                       [ :first_name, :family_name ],
                       [ :last_name, :given_name ]
                                ]
->>>>>>> b4b30e7a0d16c7a5291d41739149f0c8bef1c95b
 end
   class FullName
 

@@ -17,7 +17,6 @@ class Admin::OrdersController < Admin::ApplicationController
 
   def update
     @order = Order.find(params[:id])
-<<<<<<< HEAD
      @order_product.update(order_product_params)
      @order_products = @order.order_products
      @order.order_products.build
