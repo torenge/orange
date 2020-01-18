@@ -4,35 +4,38 @@
 	<title>ながのCAKEオレンジ</title>
 </head>
 <body>
-	<h1>注文一覧画面</h1>
-
-	<table>
-		<thead>
-			<tr>
-				<th>購入日時</th>
-				<th>購入者</th>
-				<th>注文個数</th>
-				<th>注文ステータス</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @orders.each do |order| %>
-				<tr>
-					<td><%= link_to order.created_at.strftime('%Y/%m/%d/%H:%M'), admin_order_path(order.id) %></td>
-
-					<td><%= order.user.fullname %></td>
-			
-
-				<% @order_products.each do |order_product| %>
-						<td><%= order_product.quantity %></td>
-						<td><%= order_product.status %></td>
-					</tr>
-				<% end %>
-
-			<% end %>
-			
-		</tbody>
-	</table>
-
+	<div class="body">
+		<div class="container">
+			<div class="row">
+				<h1>注文一覧画面</h1>
+				<table>
+					<thead>
+						<tr>
+							<th>購入日時</th>
+							<th>購入者</th>
+							<th>注文個数</th>
+							<th>注文ステータス</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @orders.each do |order| %>
+						<tr>
+							<td><%= link_to order.created_at.strftime('%Y/%m/%d/%H:%M'), admin_order_path(order.id) %></td>
+							<td><%= order.user.fullname %></td>
+							<td>
+								<% @quantity = [] %>
+								<% order.order_products.each do |order_product| %>
+								<% @quantity << order_product.quantity.to_i %>
+								<% end %>
+								<%= @quantity.inject{|sum,n| sum + n} %>
+							</td>
+							<td><%= order.status %></td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

@@ -1,17 +1,23 @@
 class Admin::OrdersController < Admin::ApplicationController
   def index
   	@orders = Order.all
-    @order_products = OrderProduct.all
+    @order = Order.find(params[:id])
+    @quantity = []
+    @order.order_products.each do |order_product|
+      @quantity << order_products.quantity.to_i
+    end
   end
 
   def show
   	@order = Order.find(params[:id])
     @order_products = @order.order_products
   	@user = User.find_by(params[:user_id])
+    @product = Product.find_by(params[:product_id])
   end
 
   def update
     @order = Order.find(params[:id])
+<<<<<<< HEAD
      @order_product.update(order_product_params)
      @order_products = @order.order_products
      @order.order_products.build
@@ -37,8 +43,8 @@ class Admin::OrdersController < Admin::ApplicationController
      #       @order.update(order_params)
      # else
      # end
-
-     redirect_to admin_order_path(@order)
+    @order.save
+    redirect_to admin_order_path(@order)
   end
 
   private
