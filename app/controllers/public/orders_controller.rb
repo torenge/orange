@@ -2,7 +2,7 @@ class Public::OrdersController < Public::ApplicationController
 
   def index
     @orders = Order.where(user_id: current_user.id)
-    @total = []
+    @total = [800]
     # コントローラー上だけでは、各注文の配列が並んでいるだけ[１回目の@pp、２回目の@pp、３回目の@pp]
     @i = 0
     @orders.each do |order|
