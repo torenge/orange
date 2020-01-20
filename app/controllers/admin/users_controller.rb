@@ -1,4 +1,5 @@
 class Admin::UsersController < Admin::ApplicationController
+
 	def index
 		@users = User.with_deleted.order(:id).page(params[:page]).per(10)
 	end

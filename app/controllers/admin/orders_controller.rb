@@ -1,6 +1,7 @@
 class Admin::OrdersController < Admin::ApplicationController
+
   def index
-  	@orders = Order.all.order(id: "DESC").page(params[:page]).per(10)
+  	@orders = Order.all.order("id DESC")。page(params[:page]).per(10)
   end
 
   def show
@@ -46,7 +47,7 @@ class Admin::OrdersController < Admin::ApplicationController
   end
 
 
-  private
+ private
   	def order_params
   		params.require(:order).permit(:deli_address_id, :user_id, :payment, :status, :pay_method, :postage, order_products_attributes: [:id, :status, :_destroy])
   	end

@@ -33,7 +33,7 @@
 					<h1><%= @genre.genre_name %></h1>
 					<p>全<%= @genre.products.count %>件</p>
 					<div class="">
-						<% @genre.products.each do |product| %>
+						<% @product.each do |product| %>
 						<div class="col-xs-1">
 							<%= link_to public_product_path(product) do %>
 								<%= attachment_image_tag product, :product_image, :fill, 100, 100,  format: 'jpeg', fallback: "no_image.jpg" %>
