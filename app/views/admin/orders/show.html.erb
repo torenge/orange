@@ -14,15 +14,15 @@
 					<%= @order.user.fullname %>
 				</div>
 
-				<div class="field row">
-					<label for="deli-address">配送先</label>
-					<%= @order.postal_code %>
-					<%= @order.address %>
-					<%= @order.first_name %>
-					<%= @order.last_name %>
-				</div>
+        <div class="field row">
+			<label for="deli-address">配送先</label>
+			<%= @order.postal_code %>
+			<%= @order.address %>
+			<%= @order.first_name %>
+			<%= @order.last_name %>
+		</div>
 
-				<div class="field row">
+                <div class="field row">
 					<label for="pay-method">支払方法</label>
 					<%= @order.pay_method %>
 				</div>
@@ -83,6 +83,25 @@
 						</table>
 					</div>
 				<% end %>
+
+				<table>
+						<tbody>
+							<tr>
+								<th>商品合計</th>
+								<td>
+									<%= @total.inject{|sum, n| sum + n } %>
+								</td>
+							</tr>
+							<tr>
+								<th>送料</th>
+								<td><%= @order.postage %></td>
+							</tr>
+							<tr>
+								<th>請求金額</th>
+								<td><strong><%= @total.inject{|sum, n| sum + n } + @order.postage.to_i %></strong></td>
+							</tr>
+						</tbody>
+					</table>
 				<div class="">
 
 				</div>
