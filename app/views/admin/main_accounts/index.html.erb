@@ -8,12 +8,13 @@
 		<div class="container">
 			<div class="row">
 				<h1>管理者画面</h1>
-				<p>本日の注文件数</p>
-				<%= link_to admin_orders_path do %>
-					<%= @orders.count %>件
-				<% end %>
-				<div class="">
-					<%= link_to "ログアウト" , destroy_admin_session_path, method: :delete %>
+				<div class="ma">
+					<p>本日の注文件数</p>
+				</div>
+				<div class="ma">
+					<%= link_to admin_orders_path do %>
+						<%= @orders.count %>件
+					<% end %>
 				</div>
 			</div>
 		</div>
