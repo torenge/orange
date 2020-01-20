@@ -9,38 +9,48 @@
 			<h1>商品詳細画面</h1>
 
 			<div class="col-md-4">
-				<%= attachment_image_tag @product, :product_image, :fill, 200, 200, format: 'jpeg' %>
+				<%= attachment_image_tag @product, :product_image, :fill, 300, 200, format: 'jpeg' %>
 			</div>
 
 			<div class="col-md-6">
-				<div class="field row">
-					<label for="product-name">商品名</label>
-					<%= @product.product_name %>
-				</div>
-				<div class="field row">
-					<label for="introduction">商品説明</label>
-					<%= @product.introduction %>
-				</div>
-				<div class="field row">
-					<label for="genre">ジャンル</label>
-					<%= @product.genre.genre_name %>
-				</div>
-				<div class="field row">
-					<label for="price">税込価格(税抜価格)</label>
-					<%= number_to_currency(@product.price.to_i * 1.1, :unit => "", :precision => 0) %>
+				<table style="border-collapse: separate; border-spacing: 10px 10px;">
+					<tbody>
+						<tr>
+							<td><label for="product-name">商品名</label></td>
+							<td><%= @product.product_name %></td>
+						</tr>
 
-					<label>(</label>
-					<%= number_to_currency(@product.price, :unit => "", :precision => 0) %><label>)</label>
-					<label>円</label>
-				</div>
-				<div class="field row">
-					<label for="product-status">販売ステータス</label>
-					<%= @product.status %>
-				</div>
+						<tr>
+							<td valign="top"><label for="introduction">商品説明</label></td>
+							<td><%= @product.introduction %></td>
+						</tr>
+
+						<tr>
+							<td><label for="genre">ジャンル</label></td>
+							<td><%= @product.genre.genre_name %></td>
+						</tr>
+
+						<tr>
+							<td><label for="price">税込価格(税抜価格)</label></td>
+							<td>
+								<%= number_to_currency(@product.price.to_i * 1.1, :unit => "", :precision => 0) %>
+								<label>(</label>
+								<%= number_to_currency(@product.price, :unit => "", :precision => 0) %><label>)</label>
+								<label>円</label>
+							</td>
+						</tr>
+
+						<tr>
+							<td><label for="product-status">販売ステータス</label></td>
+							<td><%= @product.status %></td>
+						</tr>
+					</tbody>
+				</table>
 
 				<%= link_to edit_admin_product_path(@product.id) do %>
 					<button class="btn btn-primary">編集する</button>
 				<% end %>
+				
 			</div>
 		</div>
 	</div>

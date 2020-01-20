@@ -4,6 +4,8 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :order_products
  has_many :deli_address
 
+	accepts_nested_attributes_for :order_products
+
     composed_of :fullname,
                   :class_name => "FullName",
                   :mapping => [
