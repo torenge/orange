@@ -51,6 +51,13 @@ class Public::OrderProductsController < Public::ApplicationController
         @order.pay_method = "銀行振込"
       end
       @order.update(order_params)
+      deli_address = DeliAddress.new
+      deli_address.user_id = current_user.id
+      deli_address.postal_code = @order.postal_code
+      deli_address.address = @order.address
+      deli_address.first_name = @order.first_name
+      deli_address.last_name = @order.last_name
+      deli_address.save
       redirect_to public_order_check_path(@order)
     end
 
