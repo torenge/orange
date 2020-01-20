@@ -31,25 +31,28 @@
 								</td>
 								<td>
 									<% order.order_products.each do |order_product| %>
-									<%= order_product.product.product_name %><br>
+										<%= order_product.product.product_name %><br>
 									<% end %>
 								</td>
 								<td>
 									<% @total = [] %>
 									<% order.order_products.each do |order_product| %>
-									<% @total << (order_product.total.to_i * 1.1).round(0) * order_product.quantity.to_i %>
+
+										<% @total << (order_product.total.to_i * 1.1).round(0) * order_product.quantity.to_i %>
 									<% end %>
 									<% if @total.count > 1 %>
-									<%= @total.inject{|sum, n| sum + n } + order.postage.to_i %>
+										<%= @total.inject{|sum, n| sum + n } + order.postage.to_i %>
 									<% else %>
-									<% @totalone = @total.inject{|sum, n| sum + n }.to_i %>
-									%= @totalone + order.postage.to_i %>
+										<% @totalone = @total.inject{|sum, n| sum + n }.to_i %>
+										<%= @totalone + order.postage.to_i %>
 									<% end %>
 								</td>
 								<td><%= order.status %></td>
-								<td class="text-center"><%= link_to "表示する",public_order_path(order.id),class: "btn btn-primary" %></td>
+								<td class="text-center">
+									<%= link_to "表示する",public_order_path(order.id),class: "btn btn-primary" %>
+								</td>
 							</tr>
-							<% end %>
+						<% end %>
 						</tbody>
 					</table>
 				</div>
