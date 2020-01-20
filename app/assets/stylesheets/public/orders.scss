@@ -1,3 +1,64 @@
 // Place all the styles related to the public/orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#order-details {
+	width: 100%;
+}
+#order-details th {
+	border: 0;
+	padding: 0;
+}
+#order-details th:first-child {
+	width:25%;
+}
+#order-details th:last-child {
+	width: 75%;
+}
+#order-details td {
+	padding: 10px 5px;
+}
+#order-details tbody > tr:first-child td {
+	border-top: 0;
+}
+.order-details-left {
+	background-color: #eee;
+}
+#order-details2 {
+	width: 100%;
+}
+#order-details2 th {
+	border: 0;
+	padding: 0;
+}
+#order-details2 th:first-child {
+	width:60%;
+}
+#order-details2 th:last-child {
+	width: 40%;
+}
+#order-details2 td {
+	padding: 10px 5px;
+}
+#order-details2 tbody > tr:first-child td {
+	border-top: 0;
+}
+.order-details-left {
+	background-color: #eee;
+}
+.text1{
+	margin: 15px 0;
+}
+
+
+.text2{
+	margin: 30px 0;
+}
+.text-center {
+	text-align: center;
+}
+.show_height{
+	height:60px;
+	background-color: #eee;
+}

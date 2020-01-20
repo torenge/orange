@@ -8,18 +8,18 @@
 		<div class="container">
 			<div class="row">
 				<div class="">
-					<h1>注文履歴一覧</h1>
-					<table class="table-bordered">
-						<thead>
-							<tr>
-							<th>注文日</th>
-							<th>配送先</th>
-							<th>注文商品</th>
-							<th>支払金額</th>
-							<th>ステータス</th>
-							<th>注文詳細</th>
+					<h4 class="text2">注文履歴一覧</h4>
+					<table class="table-bordered col-xs-12 text-left id="order-details>
+
+							<tr class="show_height">
+							<td>注文日</td>
+							<td>配送先</td>
+							<td>注文商品</td>
+							<td>支払金額</td>
+							<td>ステータス</td>
+							<td>注文詳細</td>
 						</tr>
-						</thead>
+
 						<tbody>
 							<% @orders.each do |order| %>
 							<tr>
@@ -31,16 +31,16 @@
 							</td>
 							<td>
 							<% order.order_products.each do |order_product| %>
-								<p><%= order_product.product.product_name %></p>
+							<%= order_product.product.product_name %><br>
 							<% end %>
 							</td>
-							<td>
-								<% order.order_products.each do |order_product| %>
-								<%= @total.inject{|sum, n| sum + n } + order.postage.to_i %>
-									<% end %>
-								</td>
+								<td><%= @total[@i] + 800 %>
+									<!--@totalの配列の中の@i回目の値を表示 -->
+									<% @i += 1 %>
+									<!-- 二回目のeachで、回ってきた時には@i = 1になっている -->
+								円</td>
 							<td><%= order.status %></td>
-							<td><%= link_to "表示する",public_order_path(order.id) %></td>
+							<td class="text-center"><%= link_to "表示する",public_order_path(order.id),class: "btn btn-primary" %></td>
 						</tr>
 						<% end %>
 						</tbody>

@@ -30,6 +30,12 @@
                 <li class="">
                   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
                 </li>
+
+<%= form_tag(admin_users_path,:method => 'get') do %>
+  <%= text_field_tag :user %>
+  <%= submit_tag 'Search' %>
+<% end %>
+
               <% elsif user_signed_in? %>
              <h3 class="text-right"><%= current_user.fullname %></h3>
                <ul class="nav navbar-nav navbar-right">

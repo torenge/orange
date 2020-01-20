@@ -10,7 +10,7 @@ class Public::ProductsController < Public::ApplicationController
     @products = Product.all
   	@genres = Genre.all
   	@genre = Genre.find(params[:id])
-    @product = @genre.products.page(params[:page]).per(8)
+    @product = Product.where(genre_id:@genre.id).page(params[:page]).per(8)
   end
 
   def show
