@@ -11,7 +11,7 @@
 					<h4 class="text2">注文履歴一覧</h4>
 					<table class="table-bordered col-xs-12 text-left id="order-details>
 
-							<tr class="show_height">
+						<tr class="show_height">
 							<td>注文日</td>
 							<td>配送先</td>
 							<td>注文商品</td>
@@ -23,25 +23,29 @@
 						<tbody>
 							<% @orders.each do |order| %>
 							<tr>
-							<td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-							<td>
-								<p><%= order.postal_code %></p>
-								<p><%= order.address %></p>
-								<p><%= order.fullname %></p>
-							</td>
-							<td>
-							<% order.order_products.each do |order_product| %>
-							<%= order_product.product.product_name %><br>
-							<% end %>
-							</td>
-								<td><%= @total[@i] %>
+								<td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+
+								<td>
+									<p><%= order.postal_code %></p>
+									<p><%= order.address %></p>
+									<p><%= order.fullname %></p>
+								</td>
+
+								<td>
+									<% order.order_products.each do |order_product| %>
+									<%= order_product.product.product_name %>
+									<% @total = [] %>
+										<% @total << (order_product.total.to_i * 1.1).round(0) * order_product.quantity.to_i %>
+									<% end %>
+									
+								</td>
+								<td><%= @total.inject{|sum, n| sum + n + order.postage.to_i } %></td>
 									<!--@totalの配列の中の@i回目の値を表示 -->
-									<% @i += 1 %>
 									<!-- 二回目のeachで、回ってきた時には@i = 1になっている -->
-								円</td>
-							<td><%= order.status %></td>
-							<td class="text-center"><%= link_to "表示する",public_order_path(order.id),class: "btn btn-primary" %></td>
-						</tr>
+								<td><%= order.status %></td>
+
+								<td class="text-center"><%= link_to "表示する",public_order_path(order.id),class: "btn btn-primary" %></td>
+							</tr>
 						<% end %>
 						</tbody>
 					</table>
