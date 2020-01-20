@@ -6,54 +6,72 @@
 <body>
 	<div class="body">
 		<div class="container">
-			<h1>ショッピングカート</h1>
-			<%= link_to "カートを空にする", public_carts_path, method: :delete %>
 			<div class="row">
-				<div class="col-xs-10">
-					<table>
-						<thead>
-							<tr>
-								<th>商品名</th>
-								<th>単価(税込)</th>
-								<th>数量</th>
-								<th>小計</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<% @user.carts.each do |cart| %>
+				<div class="col-xs-10 top col-xs-offset-1">
+					ショッピングカート
+					<div class="f-right">
+						<%= link_to "カートを空にする", public_carts_path, method: :delete, class: "btn btn-danger" %>
+					</div>
+				</div>
+				<div class="col-xs-10 col-xs-offset-1">
+					<div class="top">
+						<table border="1" class="table-responsive" height=150>
+							<thead class="thead-light">
 								<tr>
-									<td>
-										<%= attachment_image_tag cart.product, :product_image, :fill, 100, 100,  format: 'jpeg', fallback: "no_image.jpg" %>
+									<th height=70 width=70 class="tablep">商品名</th>
+									<th width=70 class="tablep">単価(税込)</th>
+									<th width=15% class="tablep">数量</th>
+									<th width=15% class="tablep">小計</th>
+									<th width=15% class="tablep"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<% @user.carts.each do |cart| %>
+								<tr>
+									<td class="tablep">
+										<%= attachment_image_tag cart.product, :product_image, :fill, 70, 60,  format: 'jpeg', fallback: "no_image.jpg" %>
 										<%= cart.product.product_name %>
 									</td>
-									<td><%= (cart.product.price.to_i * 1.1).round(0) %></td>
-									<td>
-										<%= form_for(cart, url: public_cart_path(cart.id)) do |f| %>
-											<%= f.number_field :quantity %>
-											<%= f.submit "変更" %>
-										<% end %>
+									<td class="tablep"><%= (cart.product.price.to_i * 1.1).round(0) %></td>
+									<td class="tablep">
+										<div class="center">
+											<%= form_for(cart, url: public_cart_path(cart.id)) do |f| %>
+											<%= f.number_field :quantity, class: "col-xs-5" %>
+											<%= f.submit "変更", class: "btn btn-primary" %>
+											<% end %>
+										</div>
 									</td>
-									<td><%= cart.quantity.to_i * (cart.product.price.to_i * 1.1).round(0) %></td>
-									<td><%= link_to '削除する', public_cart_path(cart.id), method: :delete %></td>
+									<td class="tablep">
+										<%= cart.quantity.to_i * (cart.product.price.to_i * 1.1).round(0) %>
+									</td>
+									<td class="center tablep">
+										<%= link_to '削除する', public_cart_path(cart.id), method: :delete, class: "btn btn-danger" %>
+									</td>
 								</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</div>
+					<div class="aaa top">
+						<%= link_to "買い物を続ける", public_products_path, class: "btn btn-primary" %>
+						<table border="1" height=70 width=30% class=" f-right">
+							<tbody>
+								<tr>
+									<td class="thead-light tablep" width=15%>合計金額</td>
+									<td width=15%  class="tablep">
+										<%= @total.inject{|sum, n| sum + n } %>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="btn-wrapper">
+						<div class="row">
+							<%= form_for @order, url: "/public/carts" do |f| %>
+							<%= f.submit "情報入力に進む", class: "btn btn-primary col-xs-4 col-xs-offset-4" %>
 							<% end %>
-						</tbody>
-					</table>
-					<%= link_to "買い物を続ける", public_products_path %>
-					<table>
-						<tbody>
-							<tr>
-								<td>合計金額</td>
-								<td>
-									<%= @total.inject{|sum, n| sum + n } %>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<%= form_for @order, url: "/public/carts" do |f| %>
-						<%= f.submit "情報入力に進む" %>
-					<% end %>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

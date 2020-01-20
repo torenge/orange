@@ -2,19 +2,19 @@ class Public::ProductsController < Public::ApplicationController
   def index
     @products = Product.all
     @product = Product.page(params[:page]).per(8)
-    @genres = Genre.all
+    @genres = Genre.where(genre_status: "有効")
     @genre = Genre.find_by(params[:id])
   end
 
   def genreshow
     @products = Product.all
-  	@genres = Genre.all
+  	@genres = Genre.where(genre_status: "有効")
   	@genre = Genre.find(params[:id])
     @product = Product.where(genre_id:@genre.id).page(params[:page]).per(8)
   end
 
   def show
-    @genres = Genre.all
+    @genres = Genre.where(genre_status: "有効")
     @product = Product.find(params[:id])
     @cart = Cart.new
   end
