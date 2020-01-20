@@ -62,3 +62,49 @@
 	height:60px;
 	background-color: #eee;
 }
+.tables{
+	width: 100%;
+}
+.td-top{
+	background-color: #eee;
+	height: 50px;
+}
+.td-top:first-child{
+	width: 50%;
+}
+.td-top:nth-child(2){
+	width: 20%;
+}
+
+.tables2{
+	width: 100%;
+	height: 152px;
+}
+.td-left{
+	background-color: #eee;
+	width: 50%;
+	padding-left: 5px;
+}
+.td-right{
+	padding-left: 5px;
+}
+.text7{
+	font-size: 18px;
+	margin-right: 10px;
+	float: left;
+}
+.box8{
+	margin: 25px 0 25px 0;
+}
+.box9{
+	margin-bottom: 30px;
+}
+.check-btn{
+	text-align: center;
+}
+.p_method{
+	font-size: 16px;
+}
+.user_info{
+	font-size: 16px;
+}

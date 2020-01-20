@@ -1,20 +1,22 @@
 class Admin::OrdersController < Admin::ApplicationController
 
   def index
-  	@orders = Order.all.order("id DESC")。page(params[:page]).per(10)
+  	@orders = Order.all.order("id DESC").page(params[:page]).per(10)
   end
 
   def show
   	@order = Order.find(params[:id])
-  	@user = User.find_by(params[:user_id])
+  	@user = User.with_deleted.find_by(params[:user_id])
   	@deli_address = DeliAddress.find_by(params[:deli_address_id])
     @order_products = OrderProduct.all
     @product = Product.find_by(params[:product_id])
+
     @total = []
+
     @order.order_products.each do |order_product|
       @total << order_product.quantity.to_i * (order_product.total.to_i * 1.1).round(0)
     end
- end
+  end
 
   def update
     @order = Order.find(params[:id])

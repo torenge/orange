@@ -5,49 +5,62 @@
 	</head>
 	<body>
 		<div class="container">
-			<h1>会員詳細画面</h1>
+			<div class="row admin-user-show">
+				<div class="col-md-12">
+					<div class="field row">
+						<h1>会員詳細画面</h1>
+					</div>
+				</div>
 
-			<div class="field row">
-				<label for="user-id">顧客ID</label>
-				<%= @user.id %>
+				<table class="admin-user-table">
+					<tbody>
+						<tr>
+							<td>顧客ID</td>
+							<td><%= @user.id %>
+						
+								<% if @user.deleted_at == nil %>
+									<span class="label label-info text-normal">有効会員</span>
+								<% else %>
+									<span class="label label-danger">退会済み</span>
+								<% end %>
+							</td>
+						</tr>
 
-				<% if @user.deleted_at == nil %>
-					<span class="label label-info">有効会員</span>
-				<% else %>
-					<span class="label label-danger">退会済み</span>
-				<% end %>
+						<tr>
+							<td>氏名</td>
+							<td><%= @user.fullname %></td>
+						</tr>
+
+						<tr>
+							<td>フリガナ</td>
+							<td><%= @user.kana_fullname %></td>
+						</tr>
+
+						<tr>
+							<td>郵便番号</td>
+							<td><%= @user.postal_code %></td>
+						</tr>
+
+						<tr>
+							<td>住所</td>
+							<td><%= @user.address %></td>
+						</tr>
+
+						<tr>
+							<td>電話番号</td>
+							<td><%= @user.tel_num %></td>
+						</tr>
+
+						<tr>
+							<td>メールアドレス</td>
+							<td><%= @user.email %></td>
+						</tr>
+					</tbody>
+				</table>
+
+					<%= link_to "編集する", edit_admin_user_path(@user), class: "btn btn-primary" %>
+					<%= link_to "注文履歴一覧を見る", admin_orders_path, class: "btn btn-primary" %>
 			</div>
-
-			<div class="field row">
-				<label for="fullname"><%= @user.fullname %></label>
-			</div>
-
-			<div class="field row">
-				<label for="kana-fullname"><%= @user.kana_fullname %></label>
-			</div>
-
-			<div class="field row">
-				<label for="postal-code">郵便番号</label>
-				<%= @user.postal_code %>
-			</div>
-
-			<div class="field row">
-				<label for="address">住所</label>
-				<%= @user.address %>
-			</div>
-
-			<div class="field row">
-				<label for="tel_num">電話番号</label>
-				<%= @user.tel_num %>
-			</div>
-
-			<div class="field row">
-				<label for="email">メールアドレス</label>
-				<%= @user.email %>
-			</div>
-
-			<%= link_to "編集する", edit_admin_user_path(@user) %>
-			<%= link_to "注文履歴一覧を見る", admin_orders_path %>
 		</div>
 	</body>
 </html>

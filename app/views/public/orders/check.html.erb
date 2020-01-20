@@ -6,19 +6,17 @@
 <body>
 	<div class="body">
 		<div class="container">
+			<h4>注文情報確認</h4>
 			<div class="row">
-				<div class="col-xs-7">
-					<h1>注文情報確認</h1>
-					<table>
-						<thead>
-							<tr>
-								<th>商品名</th>
-								<th>単価(税込)</th>
-								<th>数量</th>
-								<th>小計</th>
-							</tr>
-						</thead>
+				<div class="col-xs-9">
+					<table class="table-bordered tables">
 						<tbody>
+							<tr>
+								<td class="td-top">商品名</td>
+								<td class="td-top">単価(税込)</td>
+								<td class="td-top">数量</td>
+								<td class="td-top">小計</td>
+							</tr>
 							<% @order.order_products.each do |order_product| %>
 							<tr>
 								<td>
@@ -34,40 +32,42 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="col-xs-5">
-					<table>
+				<div class="col-xs-3">
+					<table class="table-bordered tables2">
 						<tbody>
 							<tr>
-								<th>送料</th>
-								<td><%= @order.postage %></td>
+								<td class="td-left">送料</td>
+								<td class="td-right"><%= @order.postage %></td>
 							</tr>
 							<tr>
-								<th>商品合計</th>
-								<td>
+								<td class="td-left">商品合計</td>
+								<td class="td-right">
 									<%= @total.inject{|sum, n| sum + n } %>
 								</td>
 							</tr>
 							<tr>
-								<th>請求金額</th>
-								<td><%= @total.inject{|sum, n| sum + n } + @order.postage.to_i %></td>
+								<td class="td-left">請求金額</td>
+								<td class="td-right"><%= @total.inject{|sum, n| sum + n } + @order.postage.to_i %></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
-				<div class="col-xs-8">
-					<h1>支払方法</h1>
-					<%= @order.pay_method %>
-				</div>
-				<div class="col-xs-8">
-					<h1>お届け先</h1>
-					〒<%= @order.postal_code %><br>
+			</div>
+			<div class="row box8">
+				<strong class="text7">支払方法</strong>
+				<span class="p_method"><%= @order.pay_method %></span>
+			</div>
+			<div class="row box9">
+				<strong class="text7">お届け先</strong>
+				<p class="user_info">〒<%= @order.postal_code %>
 					<%= @order.address%><br>
 					<%= @order.first_name %>
-					<%= @order.last_name %>
+					<%= @order.last_name %></p>
 				</div>
-				<%= link_to "購入を確定する", public_order_products_path %>
+				<div class="row">
+					<p class="check-btn"><%= link_to "購入を確定する", public_order_products_path,  class: "btn btn-primary"  %></p>
+				</div>
 			</div>
 		</div>
-	</div>
-</body>
-</html>
+	</body>
+	</html>

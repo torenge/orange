@@ -51,14 +51,14 @@
 									</tr>
 									<tr>
 										<td height=30>
-											¥<%= (product.price.to_i * 1.1).round(0)  %>
+											<%= number_to_currency(product.price.to_i * 1.1, :unit => "¥", :precision => 0) %>
 										</td>
 									</tr>
 								</table>
 							<% end %>
 						</div>
 						<% end %>
-						<%= paginate @product, class: "paginate" %>
+						<%= paginate @product, class: "pagenate" %>
 					</div>
 				</div>
 			</div>

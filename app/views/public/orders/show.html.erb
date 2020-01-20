@@ -74,7 +74,7 @@
 						<% @order.order_products.each do |order_product| %>
 						<tr>
 							<td><%= order_product.product.product_name %></td>
-							<td><%= order_product.total %></td>
+							<td><%= (order_product.total.to_i * 1.1).round(0) %></td>
 							<td><%= order_product.quantity %></td>
 							<td><%= (order_product.total.to_i * 1.1).round(0) * order_product.quantity.to_i %></td>
 						</tr>
