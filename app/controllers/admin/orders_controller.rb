@@ -27,15 +27,13 @@ class Admin::OrdersController < Admin::ApplicationController
     end
     if "製作中".in?(@status)
       @order.status = "製作中"
-      @order.update(order_params)
+      @order.save
       p "aaa"
-    end
-    if "製作完了".in?(@status)
+    elsif "製作完了".in?(@status)
       @order.status = "発送準備中"
       @order.save
       p "bbb"
-    end
-    if params[:order][:status] == "入金確認"
+    else params[:order][:status] == "入金確認"
       @order.order_products.each do |order_product|
         order_product.status = "製作待ち"
       end
