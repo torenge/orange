@@ -1,7 +1,4 @@
 class Public::OrderProductsController < Public::ApplicationController
-  def index
-  end
-
   def edit
     @user = current_user
     @order = Order.find(params[:id])
