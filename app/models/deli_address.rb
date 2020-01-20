@@ -12,19 +12,22 @@ class DeliAddress < ApplicationRecord
                       [ :first_name, :family_name ],
                       [ :last_name, :given_name ]
                                ]
+
+  def destination
+    "〒" + postal_code + " " + address + " " + first_name + last_name
+  end
 end
 
-  class FullName
 
-      attr_reader :family_name, :given_name
+class FullName
+  attr_reader :family_name, :given_name
 
-      def initialize(family_name, given_name)
-        @family_name = family_name
-        @given_name = given_name
-      end
-
-      def to_s
-        [@family_name, @given_name].compact.join(" ")
-      end
-
+  def initialize(family_name, given_name)
+    @family_name = family_name
+    @given_name = given_name
   end
+
+  def to_s
+    [@family_name, @given_name].compact.join(" ")
+  end
+end
