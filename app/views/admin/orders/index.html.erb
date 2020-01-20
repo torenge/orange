@@ -8,9 +8,9 @@
 		<div class="container">
 			<div class="row">
 				<h1>注文一覧画面</h1>
-				<table>
+				<table class="table">
 					<thead>
-						<tr>
+						<tr class="active">
 							<th>購入日時</th>
 							<th>購入者</th>
 							<th>注文個数</th>
@@ -32,8 +32,10 @@
 							<td><%= order.status %></td>
 						</tr>
 						<% end %>
+
 					</tbody>
 				</table>
+				<%= paginate @orders, class: "pagenate" %>
 			</div>
 		</div>
 	</div>

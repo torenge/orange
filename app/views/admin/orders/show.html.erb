@@ -6,18 +6,22 @@
 <body>
 	<div class="body">
 		<div class="container">
-			<div class="row">
-				<h1>注文詳細画面</h1>
+			<div class="row order-table">
+				<div class="col-xs-12">
 
 				<div class="field row">
+					<h2>注文詳細画面</h2>
+				</div>
+				
+				<div class="field row">
 					<label for="full-name">購入者</label>
-					<%= @order.user.fullname %>
+					<%= link_to @order.user.fullname, admin_user_path(@order.user.id) %>
 				</div>
 
 				<div class="field row">
 					<label for="deli-address">配送先</label>
 					<%= @order.postal_code %>
-					<%= @order.address %>
+					<%= @order.address %><br>
 					<%= @order.first_name %>
 					<%= @order.last_name %>
 				</div>
@@ -29,16 +33,18 @@
 				<%= form_for [:admin, @order] do |f| %>
 					<div class="field row">
 						<label for="status">注文ステータス</label>
-						<%= f.select :status, ['入金待ち', '入金確認', '製作中', '発送準備中', '発送済み'] %>
+						<%= f.select :status, ['入金待ち', '入金確認', '製作中', '発送準備中', '発送済み'], {}, class: "dropdown" %>
 						<%= f.submit "更新" , class: "btn btn-primary" %>
 					</div>
-					<div class="col-xs-6">
+					</div>
+
+					<div class="col-xs-5">
 						<table>
 							<tr>
 								<td>
-									<table class="table" height="250" width="100">
+									<table class="table table-condensed" height="250" width="100">
 										<thead>
-											<tr>
+											<tr class="active">
 												<th>商品名</th>
 												<th>単価(税込)</th>
 												<th>数量</th>
@@ -62,9 +68,9 @@
 									</table>
 								</td>
 								<td>
-									<table class="table" height="250" width="100">
+									<table class="table table-condensed table-borderless" height="250" width="100">
 										<thead>
-											<th>製作ステータス</th>
+											<th class="active">製作ステータス</th>
 										</thead>
 										<tbody>
 											<%= f.fields_for :order_products do |order_product| %>
@@ -81,8 +87,24 @@
 						</table>
 					</div>
 				<% end %>
-				<div class="">
-
+				<div class="col-xs-2">
+					<div class="field row">
+						<label for="total">商品合計</label>
+						<%= number_to_currency(@total.inject{|sum, n| sum + n }, :unit => "", :precision => 0) %>
+						<label>円</label>
+					</div>
+						
+					<div class="field row">
+						<label for="total">送料</label>
+						<%= @order.postage %>
+						<label>円</label>
+					</div>
+								
+					<div class="field row">
+						<label for="total">請求金額合計</label>
+						<%= number_to_currency(@total.inject{|sum, n| sum + n } + @order.postage.to_i, :unit => "", :precision => 0) %>
+						<label>円</label>
+					</div>
 				</div>
 			</div>
 		</div>

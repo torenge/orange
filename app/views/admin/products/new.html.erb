@@ -15,33 +15,41 @@
 				</div>
 
 				<div class="col-md-6">
-					<div class="field row">
-						<%= f.label "商品名" %>
-						<%= f.text_field :product_name %>
-					</div>
+					<table style="border-collapse: separate; border-spacing: 10px 10px;">
+						<tbody>
+							<tr>
+								<td><%= f.label "商品名" %></td>
+								<td><%= f.text_field :product_name %></td>
+							</tr>
 
-					<div class="field row">
-						<%= f.label "商品説明" %>
-						<%= f.text_area :introduction %>
-					</div>
+							<tr>
+								<td valign="top"><%= f.label "商品説明" %></td>
+								<td><%= f.text_area :introduction, :size => "30x7" %></td>
+							</tr>
 
-					<div class="field row">
-							<%= f.label "ジャンル" %>
-							<%= f.collection_select(:genre_id, Genre.where(genre_status: "有効"), :id, :genre_name, :prompt => '--選択してください--') %>
-					</div>
+							<tr>
+								<td><%= f.label "ジャンル" %></td>
+								<td><%= f.collection_select(:genre_id, Genre.where(genre_status: "有効"), :id, :genre_name, :prompt => '--選択してください--') %></td>
+							</tr>
 
-					<div class="field row">
-						<%= f.label "税抜価格" %>
-						<%= f.text_field :price %>
-						<%= f.label "円" %>
-					</div>
+							<tr>
+								<td><%= f.label "税抜価格" %></td>
+								<td>
+									<%= f.text_field :price %>
+									<%= f.label "円" %>
+								</td>
+							</tr>
 
-					<div class="field row">
-						<%= f.label "販売ステータス" %>
-						<%= f.select :status, ['販売中', '売切れ'], {prompt: '--選択してください--'} %>
-					</div>
+							<tr>
+								<td><%= f.label "販売ステータス" %></td>
+								<td><%= f.select :status, ['販売中', '売切れ'], {prompt: '--選択してください--'} %></td>
+							</tr>
+						</tbody>
+					</table>
 
-					<%= f.submit "新規登録" , class: 'btn btn-primary col-md-2' %>
+					<div class="action">
+						<%= f.submit "新規登録" , class: 'btn btn-primary col-md-2' %>
+					</div>
 				</div>
 			<% end %>
 		</div>
