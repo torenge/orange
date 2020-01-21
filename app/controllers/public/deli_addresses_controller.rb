@@ -1,6 +1,6 @@
 class Public::DeliAddressesController < Public::ApplicationController
 
-   before_action :login_check, only: [:edit,:update,:destroy]
+   before_action :login_check, only: [:index,:edit,:update,:destroy]
 
   def index
     @user = current_user
