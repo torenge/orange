@@ -47,4 +47,10 @@ input[type="file"] {
 input[readonly] {
   background-color: white !important;
   cursor: text !important;
+
+.introduction {
+  resize: none;
+  width:300px;
+  height:70px;
+  word-break: keep-all;
 }

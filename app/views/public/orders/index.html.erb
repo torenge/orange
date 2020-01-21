@@ -8,18 +8,18 @@
 		<div class="container">
 			<div class="row">
 				<div class="">
-					<h4 class="text2">注文履歴一覧</h4>
-					<table class="table-bordered col-xs-12 text-left id="order-details>
-						<thead>
-							<tr class="show_height">
-								<td>注文日</td>
-								<td>配送先</td>
-								<td>注文商品</td>
-								<td>支払金額</td>
-								<td>ステータス</td>
-								<td>注文詳細</td>
-							</tr>
-						</thead>
+					<h4 class="text1">注文履歴一覧</h4>
+					<table class="table-bordered col-xs-12" id="order-details">
+
+						<tr class="show_height">
+							<td>注文日</td>
+							<td>配送先</td>
+							<td>注文商品</td>
+							<td>支払金額</td>
+							<td>ステータス</td>
+							<td>注文詳細</td>
+						</tr>
+
 						<tbody>
 							<% @orders.each do |order| %>
 							<tr>
@@ -37,6 +37,7 @@
 								<td>
 									<% @total = [] %>
 									<% order.order_products.each do |order_product| %>
+
 										<% @total << (order_product.total.to_i * 1.1).round(0) * order_product.quantity.to_i %>
 									<% end %>
 									<% if @total.count > 1 %>

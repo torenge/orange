@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
+// 共通
 #order-details {
 	width: 100%;
 }
@@ -22,6 +22,21 @@
 #order-details tbody > tr:first-child td {
 	border-top: 0;
 }
+
+// 注文履歴一覧
+
+.text1{
+	margin: 30px 0;
+}
+.text-center {
+	text-align: center;
+}
+.show_height{
+	height:60px;
+	background-color: #eee;
+}
+// 注文詳細
+
 .order-details-left {
 	background-color: #eee;
 }
@@ -44,21 +59,53 @@
 #order-details2 tbody > tr:first-child td {
 	border-top: 0;
 }
-.order-details-left {
+.order_st{
+	margin:20px 0 0;
+}
+// checkページ
+.tables{
+	width: 100%;
+}
+.td-top{
 	background-color: #eee;
+	height: 50px;
 }
-.text1{
-	margin: 15px 0;
+.td-top:first-child{
+	width: 50%;
+}
+.td-top:nth-child(2){
+	width: 20%;
 }
 
-
-.text2{
-	margin: 30px 0;
+.tables2{
+	width: 100%;
+	height: 152px;
 }
-.text-center {
+.td-left{
+	background-color: #eee;
+	width: 50%;
+	padding-left: 5px;
+}
+.td-right{
+	padding-left: 5px;
+}
+.box1{
+	margin: 25px 0 25px 0;
+}
+.check_sg{
+	font-size: 18px;
+	margin-right: 10px;
+	float: left;
+}
+.box2{
+	margin-bottom: 30px;
+}
+.check-btn{
 	text-align: center;
 }
-.show_height{
-	height:60px;
-	background-color: #eee;
+.p_method{
+	font-size: 16px;
+}
+.user_info{
+	font-size: 16px;
 }
