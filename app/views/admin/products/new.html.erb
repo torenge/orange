@@ -10,8 +10,7 @@
 			<%= form_for [:admin, @product] do |f| %>
 
 				<div class="col-md-4">
-
-						<%= f.attachment_field :product_image %>
+							<%= f.attachment_field :product_image, id: "file" %>
 				</div>
 
 				<div class="col-md-6">
