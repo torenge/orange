@@ -7,7 +7,7 @@ class Admin::OrdersController < Admin::ApplicationController
     @user = User.with_deleted.find(params[:id])
     @orders = Order.where(user_id: @user).order("id DESC").page(params[:page]).per(10)
   end
-  
+
   def today
     @orders = Order.where(created_at: Time.zone.now.all_day).order("id DESC").page(params[:page]).per(10)
   end
