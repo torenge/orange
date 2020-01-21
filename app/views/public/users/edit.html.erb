@@ -16,54 +16,54 @@
 			<strong class="col-xs-3">登録情報編集</strong>
 			<span class="col-xs-2"><%= link_to "退会する" , withdraw_public_user_path(@user), class: "btn btn-danger" %></span>
 		</div>
-		<div class="row edit_table" id="order-details">
-			<%= form_for(@user, url:"/public/users/#{@user.id}") do |f| %>
-			<table class="table-bordered">
-
-				<tr>
-					<td class="col-xs-3 td-left">氏名</td>
-					<td class="col-xs-7"><%= f.text_field :first_name,autofocus: true, autocomplete: "first_name" %>
-						<%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
-					</td>
-				</tr>
-
-				<tr>
-					<td class="col-xs-3 td-left">カナ</td>
-					<td class="col-xs-7"><%= f.text_field :kana_first_name, autofocus: true, autocomplete: "kana_first_name" %>
-						<%= f.text_field :kana_last_name, autofocus: true, autocomplete: "kana_last_name" %>
-					</td>
-				</tr>
-
-				<tr>
-					<td class="col-xs-3 td-left">郵便番号</td>
-					<td class="col-xs-7">
-						<%= f.text_field :postal_code, :size=>"20", autofocus: true, autocomplete: "postal_code" %>
-					</td>
-				</tr>
-
-				<tr>
-					<td class="col-xs-3 td-left">住所</td>
-					<td class="col-xs-7"><%= f.text_field :address, :size=>"42", autofocus: true, autocomplete: "address" %>
-					</td>
-				</tr>
-
-				<tr>
-					<td class="col-xs-3 td-left">電話番号</td>
-					<td class="col-xs-7"><%= f.text_field :tel_num,  :size=>"20",autofocus: true, autocomplete: "tel_num" %>
-					</td>
-				</tr>
-
-				<tr>
-					<td class="col-xs-3 td-left">メールアドレス</td>
-					<td class="col-xs-7"><%= f.email_field :email, :size=>"26", autofocus: true, autocomplete: "email" %>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div class="row">
-			<p class="submit-btn" id="order-details"><%= f.submit '編集内容を保存する',  class: "btn btn-primary" %></p>
-		</div>
-
+		<%= form_for(@user, url:"/public/users/#{@user.id}") do |f| %>
+			<div class="row edit_table" id="order-details">
+				<table class="table-bordered">
+					<tr>
+						<td class="col-xs-3 td-left">氏名</td>
+						<td class="col-xs-7">
+							<%= f.text_field :first_name,autofocus: true, autocomplete: "first_name" %>
+							<%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-xs-3 td-left">カナ</td>
+						<td class="col-xs-7">
+							<%= f.text_field :kana_first_name, autofocus: true, autocomplete: "kana_first_name" %>
+							<%= f.text_field :kana_last_name, autofocus: true, autocomplete: "kana_last_name" %>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-xs-3 td-left">郵便番号</td>
+						<td class="col-xs-7">
+							<%= f.text_field :postal_code, :size=>"20", autofocus: true, autocomplete: "postal_code" %>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-xs-3 td-left">住所</td>
+						<td class="col-xs-7">
+							<%= f.text_field :address, :size=>"42", autofocus: true, autocomplete: "address" %>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-xs-3 td-left">電話番号</td>
+						<td class="col-xs-7">
+							<%= f.text_field :tel_num,  :size=>"20",autofocus: true, autocomplete: "tel_num" %>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-xs-3 td-left">メールアドレス</td>
+						<td class="col-xs-7">
+							<%= f.email_field :email, :size=>"26", autofocus: true, autocomplete: "email" %>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="row">
+				<p class="submit-btn" id="order-details">
+					<%= f.submit '編集内容を保存する',  class: "btn btn-primary" %>
+				</p>
+			</div>
 		<% end %>
 	</div>
 </div>
