@@ -1,4 +1,7 @@
 class Public::OrdersController < Public::ApplicationController
+
+  before_action :login_check, only: [:show]
+
   def index
     @orders = Order.where(user_id: current_user.id)
   end
@@ -28,4 +31,11 @@ end
   def order_product_params
   	params.require(:order_product).permit(:total, :quantity, :product_id)
   end
+
+  def login_check
+      @order = Order.find(params[:id])
+       unless  @order.user.id == current_user.id
+               redirect_to public_products_path
+       end
+    end
 end
