@@ -16,7 +16,7 @@
 			<strong class="col-xs-3">登録情報編集</strong>
 			<span class="col-xs-2"><%= link_to "退会する" , withdraw_public_user_path(@user), class: "btn btn-danger" %></span>
 		</div>
-		<div class="row row3" id="order-details">
+		<div class="row edit_table" id="order-details">
 			<%= form_for(@user, url:"/public/users/#{@user.id}") do |f| %>
 			<table class="table-bordered">
 
