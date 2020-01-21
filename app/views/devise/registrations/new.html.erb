@@ -1,75 +1,73 @@
 
-  <div class="container">
+<div class="container">
   <div class="row">
-  <div class="col-lg-3"></div>
-  <div class="col-lg-6">
-  <h2>新規登録</h2>
+    <div class="col-lg-2"></div>
+    <div class="col-lg-6">
+      <div class="ndp">
+        <span class="nsp">&emsp;新規会員登録&emsp;</span>
+      </div>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-    <table class="table-borderless">
-    <tr>
-    <div class="field">
-      <td><%= f.label :カナ姓名 %></td>
-      <td><%= f.text_field :kana_first_name, autofocus: true, autocomplete: "kana_first_name" %>
-      <%= f.text_field :kana_last_name, autofocus: true, autocomplete: "kana_last_name" %></td>
-    </div>
-  </tr>
-  <tr>
-    <div class="field">
-      <td><%= f.label :姓名 %></td>
-      <td><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-      <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %></td>
-    </div>
-  </tr>
-  <tr>
-    <div class="field">
-      <td><%= f.label :電話番号 %></td>
-      <td><%= f.text_field :tel_num, :size=>"42", autofocus: true, autocomplete: "tel_num" %></td>
-    </div>
-  </tr>
-  <tr>
-    <div class="field">
-      <td><%= f.label :メールアドレス %></td>
-      <td><%= f.email_field :email,:size=>"42", autofocus: true, autocomplete: "email" %></td>
-    </div>
-  </tr>
-  <tr>
-    <div class="field">
-      <td><%= f.label :パスワード %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> 文字以上)</em>
-      <% end %></td>
-      <td><%= f.password_field :password, :size=>"42", autocomplete: "new-password" %></td>
-    </div>
-  </tr>
-  <tr>
-    <div class="field">
-      <td><%= f.label :パスワード確認 %></td>
-      <td><%= f.password_field :password_confirmation, :size=>"42", autocomplete: "new-password" %></td>
-    </div>
-    </tr>
-    <tr>
-    <div class="field">
-      <td><%= f.label :郵便番号 %></td>
-      <td><%= f.text_field :postal_code, :size=>"42", autofocus: true, autocomplete: "postal_code" %></td>
-    </div>
-  </tr>
-  <tr>
-    <div class="field">
-      <td><%= f.label :住所 %></td>
-      <td><%= f.text_field :address, :size=>"42", autofocus: true, autocomplete: "address" %></td>
-    </div>
-  </tr>
-  </table>
-    <div class="actions text-center">
-      <%= f.submit "会員登録",class: "btn btn-primary"   %>
-    </div>
-  <% end %>
-  <div class="text-center">
-  <%= render "devise/shared/links" %>
-  </div>
-  </div>
-  <div class="col-lg-3"></div>
-  </div>
-  </div>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <table class="table-borderless">
+        <tr>
+          <div class="field">
+            <td class="tdd"><%= f.label :カナ氏名 %></td>
+            <td><%= f.text_field :kana_first_name, autofocus: true, autocomplete: "kana_first_name", :placeholder => "かな氏"  %>
+              <span class="stt"><%= f.text_field :kana_last_name, autofocus: true, autocomplete: "kana_last_name", :placeholder => "かな名"  %></span></td>
+            </div>
+          </tr>
+          <tr>
+            <div class="field">
+              <td class="tdd"><%= f.label :氏名 %></td>
+              <td><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", :placeholder => "氏" %>
+                <span class="stt"><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", :placeholder => "名" %></span></td>
+              </div>
+            </tr>
+            <tr>
+              <div class="field">
+                <td class="tdd"><%= f.label :電話番号 %></td>
+                <td><%= f.text_field :tel_num, :size=>"47", autofocus: true, autocomplete: "tel_num", :placeholder => "電話番号" %></td>
+              </div>
+            </tr>
+            <tr>
+              <div class="field">
+                <td class="tdd"><%= f.label :メールアドレス %></td>
+                <td><%= f.email_field :email,:size=>"47", autofocus: true, autocomplete: "email", :placeholder => "メールアドレス" %></td>
+              </div>
+            </tr>
+            <tr>
+              <div class="field">
+                <td class="tdd"><%= f.label :パスワード %>
+                  <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> 文字以上)</em>
+                  <% end %></td>
+                  <td><%= f.password_field :password, :size=>"47", autocomplete: "new-password" %></td>
+                </div>
+              </tr>
+              <tr>
+                <div class="field">
+                  <td class="tdd"><%= f.label :パスワード確認 %></td>
+                  <td><%= f.password_field :password_confirmation, :size=>"47", autocomplete: "new-password" %></td>
+                </div>
+              </tr>
+              <tr>
+                <div class="field">
+                  <td class="tdd"><%= f.label :郵便番号 %></td>
+                  <td><%= f.text_field :postal_code, :size=>"47", autofocus: true, autocomplete: "postal_code", :placeholder => "郵便番号" %></td>
+                </div>
+              </tr>
+              <tr>
+                <div class="field">
+                  <td class="tddd"><%= f.label :住所 %></td>
+                  <td class="addt"><%= f.text_field  :address, :size=>"47", autofocus: true, autocomplete: "address", :placeholder => "住所" %></td>
+                </div>
+              </tr>
+            </table>
+            <div class="actions text-center">
+              <%= f.submit "会員登録",class: "btn btn-primary"   %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
