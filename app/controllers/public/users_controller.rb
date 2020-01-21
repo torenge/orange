@@ -32,7 +32,7 @@ class Public::UsersController < Public::ApplicationController
 	def destroy
         @user = User.find(params[:id])
         @user.destroy
-        redirect_to public_users_path
+        redirect_to public_products_path
 	end
 
 private
