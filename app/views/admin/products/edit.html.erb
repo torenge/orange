@@ -13,12 +13,11 @@
 							<center>
 								<%= attachment_image_tag @product, :product_image, :fill, 300, 200, format: 'jpeg', fallback: "no_image.jpg" %>
 								<div class="editpro">
-									<label>
-										<span class="btn btn-primary">
-											<input type="file" style="display:none" name="product[product_image]" include_hidden="false" >
-											画像選択
-										</span>
-									</label>
+									<div class="preview"></div>
+									<span class="btn btn-primary btn-file">
+										<%= f.attachment_field :product_image %>
+										画像選択
+									</span>
 								</div>
 							</center>
 						</div>
