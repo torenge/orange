@@ -29,7 +29,7 @@
 									<td><%= product.id %></td>
 									<td><%= link_to product.product_name, admin_product_path(product.id) %></td>
 									<td><%= number_to_currency(product.price, :unit => "", :precision => 0) %></td>
-									
+									<td><%= product.genre.genre_name %></td>
 									<td><%= product.status %></td>
 								</tr>
 								<% end %>
