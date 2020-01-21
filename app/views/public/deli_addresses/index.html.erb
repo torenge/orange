@@ -23,32 +23,32 @@
 				<h4>配送先登録/一覧</h4>
 				<div class="col-xs-9 tableh">
 					<%= form_for(@deli_addressesx, url:"/public/deli_addresses") do |f| %>
-						<table class="tablev" border="1">
-							<tbody>
-								<tr>
-									<td class="col-md-3 thead-light tablep" height=50>郵便番号</td>
-									<td class="col-md-7 tablep">
-										<%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
-									</td>
-								</tr>
-								<tr>
-									<td class="col-md-3 thead-light tablep" height=50>住所</td>
-									<td class="col-md-7 tablep">
-										<%= f.text_field :address, :size=>"42", autofocus: true, autocomplete: "address" %>
-									</td>
-								</tr>
-								<tr>
-									<td class="col-md-3 thead-light tablep" height=50>宛名</td>
-									<td class="col-md-7 tablep">
-										<%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-										<%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<div class="tablev col-xs-offset-10">
-							<%= f.submit '登録する', class: "btn btn-primary" %>
-						</div>
+					<table class="tablev" border="1">
+						<tbody>
+							<tr>
+								<td class="col-md-3 thead-light tablep" height=50>郵便番号</td>
+								<td class="col-md-7 tablep">
+									<%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+								</td>
+							</tr>
+							<tr>
+								<td class="col-md-3 thead-light tablep" height=50>住所</td>
+								<td class="col-md-7 tablep">
+									<%= f.text_field :address, :size=>"42", autofocus: true, autocomplete: "address" %>
+								</td>
+							</tr>
+							<tr>
+								<td class="col-md-3 thead-light tablep" height=50>宛名</td>
+								<td class="col-md-7 tablep">
+									<%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+									<%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="tablev col-xs-offset-10">
+						<%= f.submit '登録する', class: "btn btn-primary" %>
+					</div>
 					<% end %>
 				</div>
 			</div>
