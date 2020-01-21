@@ -30,11 +30,7 @@
       resources :genres, only: [:index, :create, :edit, :update]
       resources :products, only: [:index, :new, :create, :show, :edit, :update]
       resources :order_products, only: [:update]
-<<<<<<< HEAD
-      resources :orders, only: [:index, :show, :update,:user_orders]
-=======
-      resources :orders, only: [:index, :show, :update, :today]
->>>>>>> 9555c5cd51a6513ba42fa7db6a11ce691831b6cc
+      resources :orders, only: [:index, :show, :update, :today, :user_orders]
       resources :main_accounts, only: [:index]
     end
 
