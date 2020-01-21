@@ -4,6 +4,11 @@ class Admin::OrdersController < Admin::ApplicationController
   	@orders = Order.all.order("id DESC").page(params[:page]).per(10)
   end
 
+  def user_orders
+    @user = User.with_deleted.find(params[:id])
+    @orders = Order.where(user_id: @user).order("id DESC").page(params[:page]).per(10)
+  end
+
   def show
   	@order = Order.find(params[:id])
   	@user = User.with_deleted.find_by(params[:user_id])

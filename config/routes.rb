@@ -5,6 +5,7 @@
   get 'public/orders/check/:id' => "public/orders#check", as: "public_order_check"
   delete 'public/carts' => "public/carts#delete_all"
   get 'public/users/:id/withdraw' => 'public/users#withdraw', as: 'withdraw_public_user'
+  get 'admin/orders/:id/user_orders' => 'admin/orders#user_orders', as:'user_orders_admin_order'
 
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -27,7 +28,7 @@
       resources :genres, only: [:index, :create, :edit, :update]
       resources :products, only: [:index, :new, :create, :show, :edit, :update]
       resources :order_products, only: [:update]
-      resources :orders, only: [:index, :show, :update]
+      resources :orders, only: [:index, :show, :update,:user_orders]
       resources :main_accounts, only: [:index]
     end
 
