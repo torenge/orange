@@ -25,6 +25,7 @@ class Public::CartsController < Public::ApplicationController
 
     @order = Order.new
     @order.user_id = current_user.id
+    @order.status = "入金待ち"
     @order.postage = 800
     @order.save!
 

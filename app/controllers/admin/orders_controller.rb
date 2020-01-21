@@ -1,7 +1,10 @@
 class Admin::OrdersController < Admin::ApplicationController
-
   def index
   	@orders = Order.all.order("id DESC").page(params[:page]).per(10)
+  end
+
+  def today
+    @orders = Order.where(created_at: Time.zone.now.all_day).order("id DESC").page(params[:page]).per(10)
   end
 
   def show
@@ -44,7 +47,6 @@ class Admin::OrdersController < Admin::ApplicationController
 
     redirect_to admin_order_path(@order)
   end
-
 
  private
   	def order_params
