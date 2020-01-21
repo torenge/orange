@@ -8,6 +8,6 @@
 
 			<div class="row box3">
 				<span><%= link_to "退会しない", edit_public_user_path(@user),class: "btn btn-primary" %></span>
-				<span><%= link_to "退会する", public_user_path(@user),class: "btn btn-danger", method: :delete, data:  {confirm: "本当に消しますか？"} %></span>
+				<span><%= link_to "退会する", public_products_path,class: "btn btn-danger", method: :delete, data:  {confirm: "本当に退会しますか？"} %></span>
 			</div>
 		</div>
