@@ -5,5 +5,5 @@ class Product < ApplicationRecord
 
 	attachment :product_image
 
-	validates :product_name, presence: true
+	
 end
