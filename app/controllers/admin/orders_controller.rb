@@ -37,6 +37,7 @@ class Admin::OrdersController < Admin::ApplicationController
       @order.status = "製作中"
       @order.save
       p "aaa"
+    elsif params[:order][:status] == "発送済み"
     elsif @status.all? {|n| n == "製作完了"}
       @order.status = "発送準備中"
       @order.save
