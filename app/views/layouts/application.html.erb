@@ -13,7 +13,11 @@
       <div id="slidemenu">
         <div class="navbar-text navbar-left">
           <span class="navbar-title">
-            <%= link_to "LOGO",public_products_path %>
+            <% if admin_signed_in? %>
+              <%= link_to "LOGO",admin_main_accounts_path %>
+            <% else %>
+              <%= link_to "LOGO",public_products_path %>
+            <% end %>
           </span>
         </div>
         <% if admin_signed_in? %>
