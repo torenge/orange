@@ -1,62 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>ながのcakeオレンジ</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <div class="header" id="header">
-        <div class="container">
-          <div id="slidemenu"><div class="navbar-text navbar-left"><span class="navbar-title"><%= link_to "LOGO",public_products_path %></span></div>
-              <% if admin_signed_in? %>
-　　　　　　　　<ul class="nav navbar-nav navbar-right" data-hover="dropdown"data-animations="zoomIn fadeIn fadeInUp fadeIn">
-                <li class="">
-                  <%= link_to "商品一覧", admin_products_path %>
-                </li>
-                <li class="">
-                  <%= link_to "会員一覧", admin_users_path %>
-                </li>
-                <li class="">
-                  <%= link_to "注文履歴一覧", admin_orders_path %>
-                </li>
-                <li class="">
-                  <%= link_to "ジャンル管理", admin_genres_path %>
-                </li>
-                <li class="">
-                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-                </li>
-
-<%= form_tag(admin_users_path,:method => 'get') do %>
-  <%= text_field_tag :user %>
-  <%= submit_tag 'Search' %>
-<% end %>
-
-              <% elsif user_signed_in? %>
-             <h3 class="text-right"><%= current_user.fullname %></h3>
-               <ul class="nav navbar-nav navbar-right">
-                            <li><%= link_to "トップ" ,public_products_path %></li>
-                            <li><%= link_to "マイページ" ,public_user_path(current_user.id) %></li>
-                            <li><%= link_to "アバウト" ,public_user_path(current_user.id) %></li>
-                            <li><%= link_to "商品一覧" ,"/" %></li>
-                            <li><%= link_to "カート" ,public_carts_path %></li>
-                            <li><%= link_to "ログアウト" ,destroy_user_session_path, method: :delete %></li>
-              <% else %>
-               <ul class="nav navbar-nav navbar-right">
-                <li><%= link_to "トップ" ,public_products_path %></li>
-                <li><%= link_to "アバウト" ,"/" %></li>
-                <li><%= link_to "商品一覧" ,"/" %></li>
-                <li><%= link_to "会員登録" ,new_user_registration_path %></li>
-                <li><%= link_to "ログイン" ,new_user_session_path %></li>
-              <% end %>
-            </ul>
-          </div>
+<head>
+  <title>ながのcakeオレンジ</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<header>
+  <div class="header" id="header">
+    <div class="container">
+      <div id="slidemenu">
+        <div class="navbar-text navbar-left">
+          <span class="navbar-title">
+            <%= link_to "LOGO",public_products_path %>
+          </span>
         </div>
+        <% if admin_signed_in? %>
+          <ul class="nav navbar-nav navbar-right" data-hover="dropdown"data-animations="zoomIn fadeIn fadeInUp fadeIn">
+            <li><%= link_to "商品一覧", admin_products_path %></li>
+            <li><%= link_to "会員一覧", admin_users_path %></li>
+            <li><%= link_to "注文履歴一覧", admin_orders_path %></li>
+            <li><%= link_to "ジャンル管理", admin_genres_path %></li>
+            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+
+              <%= form_tag(admin_users_path,:method => 'get') do %>
+                <%= text_field_tag :user %>
+                <%= submit_tag 'Search' %>
+              <% end %>
+          </ul>
+        <% elsif user_signed_in? %>
+          <h3 class="text-right"><%= current_user.fullname %></h3>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "トップ" ,public_products_path %></li>
+            <li><%= link_to "マイページ" ,public_user_path(current_user.id) %></li>
+            <li><%= link_to "アバウト" ,public_user_path(current_user.id) %></li>
+            <li><%= link_to "商品一覧" ,"/" %></li>
+            <li><%= link_to "カート" ,public_carts_path %></li>
+            <li><%= link_to "ログアウト" ,destroy_user_session_path, method: :delete %></li>
+          </ul>
+        <% else %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "トップ" ,public_products_path %></li>
+            <li><%= link_to "アバウト" ,"/" %></li>
+            <li><%= link_to "商品一覧" ,"/" %></li>
+            <li><%= link_to "会員登録" ,new_user_registration_path %></li>
+            <li><%= link_to "ログイン" ,new_user_session_path %></li>
+          </ul>
+        <% end %>
+      </div>
     </div>
-    <%= yield %>
-  </body>
+  </div>
+</header>
+<%= yield %>
+  <% if admin_signed_in? %>
+  <% else %>
+    <footer></footer>
+  <% end %>
 </html>
