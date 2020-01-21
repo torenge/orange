@@ -62,7 +62,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-7">
-					<p class="text1"><strong>注文内容</strong></p>
+						<div class="order_st"><strong>注文内容</strong></div>
 					<table class="table-bordered"  id="order-details">
 						<tr>
 							<td class="order-details-left">商品</td>
@@ -74,7 +74,7 @@
 						<% @order.order_products.each do |order_product| %>
 						<tr>
 							<td><%= order_product.product.product_name %></td>
-							<td><%= order_product.total %></td>
+							<td><%= (order_product.total.to_i * 1.1).round(0) %></td>
 							<td><%= order_product.quantity %></td>
 							<td><%= (order_product.total.to_i * 1.1).round(0) * order_product.quantity.to_i %></td>
 						</tr>
