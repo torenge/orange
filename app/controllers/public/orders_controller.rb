@@ -1,6 +1,6 @@
 class Public::OrdersController < Public::ApplicationController
   def index
-    @orders = Order.where(user_id: current_user.id)
+    @orders = Order.where(user_id: current_user.id).order("id DESC")
   end
 
   def show

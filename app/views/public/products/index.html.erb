@@ -34,8 +34,7 @@
 				<div class="row">
 					<h1>商品一覧</h1>
 					<p>全<%= @products.count %>件</p>
-					<div class="">
-						<% @product.each do |product| %>
+					<% @product.each do |product| %>
 						<div class="col-xs-3">
 							<%= link_to public_product_path(product) do %>
 								<table class="tableb">
@@ -57,9 +56,8 @@
 								</table>
 							<% end %>
 						</div>
-						<% end %>
-						<%= paginate @product, class: "pagenate" %>
-					</div>
+					<% end %>
+					<%= paginate @product, class: "pagenate" %>
 				</div>
 			</div>
 		</div>
