@@ -19,7 +19,8 @@ input[type="file"] {
 }
 
 .introduction {
-  resize: vertical;
+  resize: none;
   width:300px;
-  height:200px;
+  height:70px;
+  word-break: keep-all;
 }
