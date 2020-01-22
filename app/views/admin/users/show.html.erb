@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>ながのCAKEオレンジ</title>
-	</head>
-	<body>
+<body>
+	<div class="body">
 		<div class="container">
 			<div class="row admin-user-show">
 				<div class="col-md-12">
@@ -17,9 +13,9 @@
 							<td>顧客ID</td>
 							<td><%= @user.id %>
 								<% if @user.deleted_at == nil %>
-									<span class="label label-info text-normal">有効会員</span>
+								<span class="label label-info text-normal">有効会員</span>
 								<% else %>
-									<span class="label label-danger">退会済み</span>
+								<span class="label label-danger">退会済み</span>
 								<% end %>
 							</td>
 						</tr>
@@ -53,5 +49,5 @@
 				<%= link_to "注文履歴一覧を見る", user_orders_admin_order_path(@user), class: "btn btn-primary" %>
 			</div>
 		</div>
-	</body>
-</html>
+	</div>
+</body>

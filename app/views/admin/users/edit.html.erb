@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>ながのCAKEオレンジ</title>
-</head>
 <body>
-	<div class="container">
-	
-
-		<% if @user.errors.any? %>
+	<div class="body">
+		<div class="container">
+			<% if @user.errors.any? %>
 			<div class="alert alert-warining">
 				<ul>
 					<li><%= pluralize(@user.errors.count, "error") %> prohibited this obj from being saved:</li>
@@ -16,25 +10,23 @@
 					<% end %>
 				</ul>
 			</div>
-		<% end %>
+			<% end %>
 
-		<div class="field row">
-			<label for="user-id">会員ID</label>
-			<%= @user.id %>
-		</div>
+			<div class="field row">
+				<label for="user-id">会員ID</label>
+				<%= @user.id %>
+			</div>
 
-		<%= form_for [:admin, @user] do |f| %>
+			<%= form_for [:admin, @user] do |f| %>
 			<div class="field row">
 				<div class="box">
 					<div class="form-label">
 						<%= f.label "氏名" %>
 					</div>
-					
 					<div class="block">
 						<%= f.text_field :first_name %>
 						<%= f.text_field :last_name %>
 					</div>
-					
 				</div>
 			</div>
 
@@ -107,7 +99,7 @@
 			<div class="field row">
 				<%= f.submit "変更を保存する" , class: "btn btn-primary" %>
 			</div>
-		<% end %>
+			<% end %>
+		</div>
 	</div>
 </body>
-</html>
