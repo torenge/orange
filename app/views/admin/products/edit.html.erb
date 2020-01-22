@@ -1,64 +1,58 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>ながのcakeオレンジ</title>
-</head>
-	<body>
-		<div class="body">
-			<div class="container">
-				<div class="row">
-					<h1>商品　編集画面</h1>
-					<%= form_for [:admin, @product] do |f| %>
-						<div class="col-md-4">
-							<center>
-								<%= attachment_image_tag @product, :product_image, :fill, 300, 200, format: 'jpeg', fallback: "no_image.jpg" %>
-								<div class="editpro">
-									<span class="btn btn-primary btn-file">
-										<%= f.attachment_field :product_image %>
-										画像選択
-									</span>
-								</div>
-							</center>
+<body>
+	<div class="body">
+		<div class="container">
+			<div class="row">
+				<h1>商品　編集画面</h1>
+				<%= form_for [:admin, @product] do |f| %>
+				<div class="col-md-4">
+					<center>
+						<%= attachment_image_tag @product, :product_image, :fill, 300, 200, format: 'jpeg', fallback: "no_image.jpg" %>
+						<div class="editpro">
+							<span class="btn btn-primary btn-file">
+								<%= f.attachment_field :product_image %>
+								画像選択
+							</span>
 						</div>
-						<div class="col-md-6">
-							<table style="border-collapse: separate; border-spacing: 10px 10px;">
-								<tbody>
-									<tr>
-										<td><%= f.label "商品名" %></td>
-										<td><%= f.text_field :product_name %></td>
-									</tr>
-									<tr>
-										<td valign="top"><%= f.label "商品説明" %></td>
-										<td><%= f.text_area :introduction , :size => "30x7" %></td>
-									</tr>
-									<tr>
-										<td><%= f.label "ジャンル" %></td>
-										<td>
-											<%= f.collection_select(:genre_id, Genre.where(genre_status: "有効"), :id, :genre_name, :prompt => '--選択してください--') %>
-										</td>
-									</tr>
-									<tr>
-										<td><%= f.label "税抜価格" %></td>
-										<td>
-											<%= f.text_field :price %>
-											<%= f.label "円" %>
-										</td>
-									</tr>
-									<tr>
-										<td><%= f.label "販売ステータス" %></td>
-										<td>
-											<%= f.select :status, ['販売中', '売切れ'], {prompt: '--選択してください--'} %>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<div class="editpro-fr">
-								<%= f.submit "変更を保存" , class: 'btn btn-primary' %>
-							</div>
-						</div>
-					<% end %>
+					</center>
 				</div>
+				<div class="col-md-6">
+					<table style="border-collapse: separate; border-spacing: 10px 10px;">
+						<tbody>
+							<tr>
+								<td><%= f.label "商品名" %></td>
+								<td><%= f.text_field :product_name %></td>
+							</tr>
+							<tr>
+								<td valign="top"><%= f.label "商品説明" %></td>
+								<td><%= f.text_area :introduction , :size => "30x7" %></td>
+							</tr>
+							<tr>
+								<td><%= f.label "ジャンル" %></td>
+								<td>
+									<%= f.collection_select(:genre_id, Genre.where(genre_status: "有効"), :id, :genre_name, :prompt => '--選択してください--') %>
+								</td>
+							</tr>
+							<tr>
+								<td><%= f.label "税抜価格" %></td>
+								<td>
+									<%= f.text_field :price %>
+									<%= f.label "円" %>
+								</td>
+							</tr>
+							<tr>
+								<td><%= f.label "販売ステータス" %></td>
+								<td>
+									<%= f.select :status, ['販売中', '売切れ'], {prompt: '--選択してください--'} %>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="editpro-fr">
+						<%= f.submit "変更を保存" , class: 'btn btn-primary' %>
+					</div>
+				</div>
+				<% end %>
 			</div>
 		</div>
-	</body>
-</html>
+	</div>
+</body>
