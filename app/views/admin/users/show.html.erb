@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>ながのCAKEオレンジ</title>
-	</head>
-	<body>
+<body>
+	<div class="body">
 		<div class="container">
 			<div class="row admin-user-show">
 				<div class="col-md-12">
@@ -11,56 +7,47 @@
 						<h1>会員詳細画面</h1>
 					</div>
 				</div>
-
 				<table class="admin-user-table">
 					<tbody>
 						<tr>
 							<td>顧客ID</td>
 							<td><%= @user.id %>
-						
 								<% if @user.deleted_at == nil %>
-									<span class="label label-info text-normal">有効会員</span>
+								<span class="label label-info text-normal">有効会員</span>
 								<% else %>
-									<span class="label label-danger">退会済み</span>
+								<span class="label label-danger">退会済み</span>
 								<% end %>
 							</td>
 						</tr>
-
 						<tr>
 							<td>氏名</td>
 							<td><%= @user.fullname %></td>
 						</tr>
-
 						<tr>
 							<td>フリガナ</td>
 							<td><%= @user.kana_fullname %></td>
 						</tr>
-
 						<tr>
 							<td>郵便番号</td>
 							<td><%= @user.postal_code %></td>
 						</tr>
-
 						<tr>
 							<td>住所</td>
 							<td><%= @user.address %></td>
 						</tr>
-
 						<tr>
 							<td>電話番号</td>
 							<td><%= @user.tel_num %></td>
 						</tr>
-
 						<tr>
 							<td>メールアドレス</td>
 							<td><%= @user.email %></td>
 						</tr>
 					</tbody>
 				</table>
-
-					<%= link_to "編集する", edit_admin_user_path(@user), class: "btn btn-primary" %>
-					<%= link_to "注文履歴一覧を見る", user_orders_admin_order_path(@user), class: "btn btn-primary" %>
+				<%= link_to "編集する", edit_admin_user_path(@user), class: "btn btn-primary" %>
+				<%= link_to "注文履歴一覧を見る", user_orders_admin_order_path(@user), class: "btn btn-primary" %>
 			</div>
 		</div>
-	</body>
-</html>
+	</div>
+</body>
